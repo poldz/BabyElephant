@@ -1,0 +1,2 @@
+module BankOtherTransactionsHelper
+end

@@ -1,0 +1,2 @@
+module BankInterestsHelper
+end

@@ -1,0 +1,42 @@
+<div class="post">
+
+
+<p class="meta">List of Accounting Periods for Account#<%= @account.account_number%>: <%= @account.account_name %></p>
+<h2 class="title">Account#<%= @account.account_number%>: <%= @account.account_name %></h2>
+<div class="entry">
+
+
+<table class="gridtable">
+  <tr>
+    <th>Date</th>
+    <th>Receipts balance forward</th>
+    <th>Checking balance forward</th>
+    <th>Other account balance forward</th>
+    <th>Total funds at bom</th>
+    
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @accounting_periods.each do |accounting_period| %>
+  <tr>
+    <td><%= best_in_place [accounting_period.account, accounting_period], :date, :display_with => lambda { |v| v.strftime("%b %Y") if v } %></td>
+    <td><%= best_in_place [accounting_period.account, accounting_period], :receipts_balance_forward %></td>
+    <td><%= best_in_place [accounting_period.account, accounting_period], :checking_balance_forward %></td>
+    <td><%= best_in_place [accounting_period.account, accounting_period], :other_account_balance_forward %></td>
+    <td><%= best_in_place [accounting_period.account, accounting_period], :total_funds_at_bom %></td>
+    <td><%= link_to 'Show', [accounting_period.account, accounting_period] %></td>
+    <td><%= link_to 'Edit', edit_account_accounting_period_path(accounting_period.account, accounting_period) %></td>
+    <td><%= link_to 'Destroy', [accounting_period.account, accounting_period], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Accounting period', new_account_accounting_period_path(@account) %>
+
+
+</div>
+</div>

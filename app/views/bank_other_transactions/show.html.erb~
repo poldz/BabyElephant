@@ -1,0 +1,46 @@
+<div class="post">
+
+
+<p class="meta">Bank Other Transaction for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Bank Other Transaction</h2>
+<div class="entry">
+
+
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @bank_other_transaction.date %>
+</p>
+
+<p>
+  <b>Bank account:</b>
+  <%= @bank_other_transaction.bank_account %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @bank_other_transaction.description %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @bank_other_transaction.amount %>
+</p>
+
+<p>
+  <b>Trancaction type:</b>
+  <%= @bank_other_transaction.transaction_type %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @bank_other_transaction.notes %>
+</p>
+
+
+
+</div>
+</div>

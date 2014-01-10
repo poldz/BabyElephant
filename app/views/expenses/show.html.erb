@@ -1,0 +1,49 @@
+<div class="post">
+
+
+<p class="meta">Expense for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Expense</h2>
+<div class="entry">
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @expense.date %>
+</p>
+
+<p>
+  <b>Source of fund:</b>
+  <%= @expense.source_of_fund %>
+</p>
+
+
+<% if @expense.is_from_bank_withdrawal? %>
+
+<p>
+  <b>Bank Withdrawal:</b>
+  <%= @expense.bank_withdrawal.display_name %>
+</p>
+
+<% end %>
+
+<p>
+  <b>Description:</b>
+  <%= @expense.description %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @expense.amount %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @expense.notes %>
+</p>
+
+
+
+</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="post">
+
+
+<p class="meta">Remittance for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Remittances</h2>
+<div class="entry">
+
+
+
+<div id="remittance_list">
+
+  <%= render partial: 'list' %>
+
+</div>
+
+<br />
+
+<%= link_to 'New Remittance', new_account_accounting_period_remittance_path(@account, @accounting_period), :data => { :colorbox => true} %>
+
+
+</div>
+</div>

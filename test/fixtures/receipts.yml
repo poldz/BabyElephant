@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  account: 
+  accounting_period: 
+  created_by_id: 1
+  date: 2013-05-07
+  worldwide_work: 9.99
+  kingdom_hall_construction_worldwide: 9.99
+  local_congregation_expenses: 9.99
+  other_1: MyString
+  other_1_amount: 9.99
+  other_1_for: MyString
+  other_2: MyString
+  other_2_amount: 9.99
+  other_2_for: MyString
+  total: 9.99
+
+two:
+  user: 
+  account: 
+  accounting_period: 
+  created_by_id: 1
+  date: 2013-05-07
+  worldwide_work: 9.99
+  kingdom_hall_construction_worldwide: 9.99
+  local_congregation_expenses: 9.99
+  other_1: MyString
+  other_1_amount: 9.99
+  other_1_for: MyString
+  other_2: MyString
+  other_2_amount: 9.99
+  other_2_for: MyString
+  total: 9.99

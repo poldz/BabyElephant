@@ -1,0 +1,20 @@
+<div class="post">
+
+
+<p class="meta">Receipts for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Receipt List</h2>
+<div class="entry">
+
+
+<div id="receipt_list">
+  <%= render partial: 'list' %>
+
+</div>
+
+
+<br />
+
+<%= link_to 'New Receipt', new_account_accounting_period_receipt_path(@account, @accounting_period), :data => { :colorbox => true } %>
+
+</div>
+</div>

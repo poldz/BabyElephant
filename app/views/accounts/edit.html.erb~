@@ -1,0 +1,12 @@
+<div class="post">
+
+
+<p class="meta">Edit Account Information</p>
+<h2 class="title">Edit Account# <%= @account.account_number %>: <%= @account.account_name %></h2>
+<div class="entry">
+
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @account %> |
+<%= link_to 'Back', accounts_path %>

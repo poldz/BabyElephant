@@ -1,0 +1,31 @@
+<div class="post">
+
+
+<p class="meta">Bank Tax for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Bank Tax</h2>
+<div class="entry">
+
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @bank_tax.date %>
+</p>
+
+<p>
+  <b>Bank account:</b>
+  <%= @bank_tax.bank_account %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @bank_tax.amount %>
+</p>
+
+
+
+
+</div>
+</div>

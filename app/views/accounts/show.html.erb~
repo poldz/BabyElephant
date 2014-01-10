@@ -1,0 +1,62 @@
+<div class="post">
+
+
+<p class="meta">Account Information</p>
+<h2 class="title">Account# <%= @account.account_number %>: <%= @account.account_name %></h2>
+<div class="entry">
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Account name:</b>
+  <%= @account.account_name %>
+</p>
+
+<p>
+  <b>Account type:</b>
+  <%= @account.account_type %>
+</p>
+
+<p>
+  <b>Account number:</b>
+  <%= @account.account_number %>
+</p>
+
+<p>
+  <b>City or town:</b>
+  <%= @account.city_or_town %>
+</p>
+
+<p>
+  <b>Province or state:</b>
+  <%= @account.province_or_state %>
+</p>
+
+<p>
+  <b>Account servant name:</b>
+  <%= @account.account_servant_name %>
+</p>
+
+<p>
+  <b>Secritary name:</b>
+  <%= @account.secritary_name %>
+</p>
+
+<p>
+  <b>Checking account rename:</b>
+  <%= @account.checking_account_rename %>
+</p>
+
+<p>
+  <b>Other account name:</b>
+  <%= @account.other_account_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %> |
+<%= link_to 'Accounting Periods', accounts_path %>
+
+</div>
+</div>

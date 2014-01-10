@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Substantial   
+Description: A two-column, fixed-width design for 1024x768 screen resolutions.
+Version    : 1.0
+Released   : 20100522
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>CAS - Congregation Accounting System</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+
+
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+
+<% if @accounting_period %>
+  <script>
+    $(function() {
+      $('.best_in_place').bind("ajax:success", function(){
+         $.get('<%= summary_account_accounting_period_path(@accounting_period.account, @accounting_period) -%>');
+      })
+    });
+  </script>
+
+<% end %>
+
+
+
+</head>
+<body>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><%= link_to 'Home', home_index_path %></li>
+                        <% if current_user && user_signed_in? %>
+			  <li><%= link_to 'Accounts', accounts_path %></li>
+                        <% end %>
+
+                        
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="search">
+		<!--form method="get" action="">
+			<fieldset>
+				<input type="text" name="s" id="search-text" size="15" />
+			</fieldset>
+		</form -->
+                <% if current_user && user_signed_in? %>
+	           Welcome <%= link_to current_user.name, edit_user_registration_path %>
+                   | <%= link_to 'LOGOUT', destroy_user_session_path %>
+                <% end %>
+	</div>
+	<!-- end #search -->
+</div>
+<!-- end #header -->
+<!-- end #header-wrapper -->
+<div id="logo">
+	<h1><a href="#">CAS</a></h1>
+	<p><em> Congregation Accounting System</em></p>
+</div>
+<hr />
+<!-- end #logo -->
+<div id="page">
+	<div id="content">
+		<div id="content-bgtop">
+			<div id="content-bgbtm">
+				
+				
+				
+                           <p class="notice"><%= notice %></p>
+                           <p class="alert"><%= alert %></p>
+
+                           <%= yield %>
+			</div>
+		</div>
+	</div>
+	<!-- end #content -->
+	<div id="sidebar">
+           <%= render :partial => '/shared/side_links' %>
+
+		
+	</div>
+	<!-- end #sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+	<!-- end #page -->
+	<div id="footer">
+		<p>for personal use only</p>
+	</div>
+	<!-- end #footer -->
+</div>
+</body>
+</html>

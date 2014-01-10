@@ -1,0 +1,2 @@
+module BankPenaltiesHelper
+end

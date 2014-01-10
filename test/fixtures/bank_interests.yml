@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  account: 
+  accounting_period: 
+  created_by_id: 1
+  date: 2013-05-08
+  bank_account: MyString
+  amount: 9.99
+
+two:
+  user: 
+  account: 
+  accounting_period: 
+  created_by_id: 1
+  date: 2013-05-08
+  bank_account: MyString
+  amount: 9.99

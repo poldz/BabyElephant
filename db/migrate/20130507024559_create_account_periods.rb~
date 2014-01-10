@@ -1,0 +1,30 @@
+class CreateAccountPeriods < ActiveRecord::Migration
+  def change
+    create_table :account_periods do |t|
+      t.references :user
+      t.references :account
+      t.integer :created_by_id
+      t.datetime :date
+      t.string :checking_account_rename
+      t.string :other_account_name
+      t.decimal :receipts_balance_forward, :precision => 8, :scale => 2
+      t.decimal :checking_balance_forward, :precision => 8, :scale => 2
+      t.decimal :other_account_balance_forward, :precision => 8, :scale => 2
+      t.decimal :total_funds_at_bom, :precision => 8, :scale => 2
+      t.decimal :total_funds_at_eom, :precision => 8, :scale => 2
+      t.decimal :total_funds_rfsp, :precision => 8, :scale => 2
+      t.decimal :total_funds_atcce, :precision => 8, :scale => 2
+      t.decimal :surplus_deficit, :precision => 8, :scale => 2
+      t.decimal :total_receipts, :precision => 8, :scale => 2
+      t.decimal :total_expenditures, :precision => 8, :scale => 2
+      t.decimal :for_worldwide_work, :precision => 8, :scale => 2
+      t.decimal :for_kingdom_hall_construction_worldwide, :precision => 8, :scale => 2
+
+      t.timestamps
+    end
+    add_index :account_periods, :user_id
+    add_index :account_periods, :account_id
+    add_index :account_periods, :created_by_id
+    add_index :account_periods, :created_by_id
+  end
+end

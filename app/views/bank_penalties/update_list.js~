@@ -1,0 +1,2 @@
+$("#bank_penalty_list").html("<%= escape_javascript(render :partial => 'list') %>");
+$.colorbox.close();

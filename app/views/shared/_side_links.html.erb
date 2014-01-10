@@ -1,0 +1,115 @@
+
+
+<ul>
+
+
+<% if current_user && @account && !@account.new_record? %>
+  <li>
+  <h2 style="font-size:14px; font-weight: bold;">Current Account</h2>
+
+
+ <p>
+      
+      <table class="gridtable" style="text-align: right; margin-left: 10px;">
+    
+        <tbody id="side_details_current_act">
+          <tr>
+            <td><strong style="font-size:10px;">Account ID:</strong></td>      
+            <td><%= @account.id %></td>
+          </tr>
+
+          <tr>
+            <td><strong style="font-size:10px;">Account Number:</strong></td>      
+            <td><%= @account.account_number %></td>
+          </tr>
+
+          <tr>
+            <td><strong style="font-size:10px;">Account Name:</strong></td>      
+            <td><%= @account.account_name %></td>
+          </tr>
+
+          <tr>
+            <td><strong style="font-size:10px;">Account Type:</strong></td>      
+            <td><%= @account.account_type %></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+  </p>
+
+
+
+  </li>
+
+<% end %>
+
+
+<% if @accounting_period && !@accounting_period.new_record? %>
+<li id="accounting_period_summary">
+  <%= render partial: '/shared/accounting_period_summary' %>
+</li>
+<% end %>
+
+
+<% if current_user %>
+
+<li>
+	<h2 style="font-size:14px; font-weight: bold;"> <%= link_to 'Accounts', accounts_path, style: "color: #ffffff;" %></h2>
+	<div id="accounts_side_list_accordion" style="margin-left: 10px;">
+          <% current_user.accounts.each do |act| %>
+            <h3  id="accounts_side_list_accordion__<%= act.id%>" style="font-size:10px; font-weight: bold;"><%= link_to "Act Num: #{act.account_number}, Name: #{act.account_name}", act %></h3>          
+            <div >
+          
+
+<strong style="font-size:12px; text-align: left;">Accounting Periods:</strong>
+
+
+<table class="gridtable">
+  <tr>
+    <th>ID</th>
+    <th>Period Date</th>
+  </tr>
+
+<% act.accounting_periods.order('date desc').limit(12).each do |accounting_period| %>
+  <tr>
+    <td><%= link_to accounting_period.id, [accounting_period.account, accounting_period]  %></td>
+    <td><%= link_to accounting_period.date.strftime("%b %Y"), [accounting_period.account, accounting_period]  if accounting_period.date %></td>
+  </tr>
+<% end %>
+</table>
+
+<ul>
+<li><%= link_to 'More ...', account_accounting_periods_path(act), style: "font-size: 10px;" %></li>
+
+<li><%= link_to 'New Accounting period', new_account_accounting_period_path(act), style: "font-size: 10px;" %></li>
+
+</ul>
+
+
+    
+            </div>
+          <% end %>
+
+  
+ 
+</div>
+</li>
+
+
+
+
+<script>
+  $(function() {
+    $( "#accounts_side_list_accordion" ).accordion();
+    <% if @account %>
+      $("#accounts_side_list_accordion__<%= @account.id%>").click();
+    <% end %>
+  });
+  </script>
+
+<% end %>
+
+</ul>
+
+

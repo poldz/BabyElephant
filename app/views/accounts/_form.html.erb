@@ -1,0 +1,26 @@
+<%= simple_form_for(@account) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <%= f.input :account_name %>
+  <%= f.input :account_type, collection: ['Congregation', 'Circuit', 'KH Operating Commitee'] %>
+  <%= f.input :account_number %>
+  <%= f.input :city_or_town %>
+  <%= f.input :province_or_state %>
+  <%= f.input :account_servant_name %>
+  <%= f.input :secritary_name %>
+  <%= f.input :checking_account_rename %>
+  <%= f.input :other_account_name %>
+
+  <%= f.button :submit %>
+<% end %>

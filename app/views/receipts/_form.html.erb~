@@ -1,0 +1,33 @@
+<%= simple_form_for([@account, @accounting_period, @receipt], remote: true) do |f| %>
+  <%#= f.error_notification %>
+
+  <% if @receipt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@receipt.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @receipt.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <%= f.input :date, :as => :ui_date_picker %>
+    <%= f.input :worldwide_work %>
+    <%= f.input :kingdom_hall_construction_worldwide %>
+    <%= f.input :local_congregation_expenses %>
+    <%= f.input :other_1 %>
+    <%= f.input :other_1_amount %>
+    <%= f.input :other_1_for, collection: contributions_for_list, include_blank: true %>
+    <%= f.input :other_2 %>
+    <%= f.input :other_2_amount %>
+    <%= f.input :other_2_for, collection: contributions_for_list, include_blank: true %>
+    <%= f.input :total %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>expense

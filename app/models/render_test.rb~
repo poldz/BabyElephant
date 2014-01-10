@@ -1,0 +1,188 @@
+module PDFReportGenerator
+
+class RenderTest
+
+
+  def self.run
+    system 'reset'   
+
+    act_sheet_front = generate_front_account_sheet_test_data
+    act_sheet_back = generate_back_account_sheet_test_data(act_sheet_front)
+    act_sheet_front2 = generate_front_account_sheet_test_data(act_sheet_back, 10)
+
+    Prawn::Document.generate("background2.pdf", :template => act_sheet_front.template_file) do |pdf|
+      
+      #act_sheet_front.create_new_page!(pdf)
+      act_sheet_front.render_to_page!(pdf)
+
+      act_sheet_back.create_new_page!(pdf)
+      act_sheet_back.render_to_page!(pdf)
+
+
+      act_sheet_front2.create_new_page!(pdf)
+      act_sheet_front2.render_to_page!(pdf)
+ 
+      
+
+    end
+
+
+
+
+
+
+  end
+
+
+  def self.generate_front_account_sheet_test_data(previous_page = nil, lines = nil)
+
+     act_sheet_front = AccountSheetFrontPage.new :previous_page => previous_page
+
+     act_sheet_front.congregation_or_circuit = "Jones"
+     act_sheet_front.city = 'Cebu City'
+     act_sheet_front.province_or_state = "Cebu"
+     act_sheet_front.date = (DateTime.now).beginning_of_month
+     
+     act_sheet_front.checking_account_name = "Checking Test Value"
+     act_sheet_front.other_account_name = "Other Test Value"
+     
+     act_sheet_front.receipts_balance_forward = 1000.12
+
+     act_sheet_front.checking_balance_forward = 2000.34
+
+     act_sheet_front.other_balance_forward = 3000.56
+
+     arr = []
+     arr << AccountSheetObligation.new(:name => "KHOC 11111", :amount => 2001.11)
+     arr << AccountSheetObligation.new(:name => "KHOC 222222", :amount => 2002.22)
+     arr << AccountSheetObligation.new(:name => "KHOC 33333", :amount => 2003.33)
+     arr << AccountSheetObligation.new(:name => "KHOC  44444", :amount => 2004.44)
+     arr << AccountSheetObligation.new(:name => "KHOC 555", :amount => 2005.55)
+     arr << AccountSheetObligation.new(:name => "KHOC66666666", :amount => 2006.66)
+     arr << AccountSheetObligation.new(:name => "KHOC 77777", :amount => 2007.77)
+     arr << AccountSheetObligation.new(:name => "KHOC 888888", :amount => 2008.88)
+     arr << AccountSheetObligation.new(:name => "KHOC 999999", :amount => 2009.99)
+     arr << AccountSheetObligation.new(:name => "KHOC 1010", :amount => 2010)
+
+     act_sheet_front.obligations_at_eom_current = arr
+
+     arr2 = []    
+     arr2 << AccountSheetObligation.new(:name => "Loan 11111", :amount => 3001.11)
+     arr2 << AccountSheetObligation.new(:name => "Loan 222222", :amount => 3002.22)
+     arr2 << AccountSheetObligation.new(:name => "Loan 33333", :amount => 3003.33)
+     arr2 << AccountSheetObligation.new(:name => "Loan  44444", :amount => 3004.44)
+     arr2 << AccountSheetObligation.new(:name => "Loan 555", :amount => 3005.55)
+     arr2 << AccountSheetObligation.new(:name => "Loan66666666", :amount => 3006.66)
+     arr2 << AccountSheetObligation.new(:name => "Loan 77777", :amount => 3007.77)
+   
+     act_sheet_front.obligations_at_eom_long_term = arr2
+     
+
+
+     (lines.nil? ? act_sheet_front.number_of_lines : lines).times do|i| 
+
+       str_description = ["the quick brown fox jumps over to the lazy dog test d e s c r i p t i o n #{i+1}", "the quick brown fox jumps over to the #{i+1}"]
+       str_note = ["this is just a sample note", "note only note only note only"]
+  
+
+
+       case (1..7).to_a.sample
+       when 1 # recepts in
+         act_sheet_front.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :receipt_in => rand_amount, :tc => rand_tc
+       when 2 # recepts out
+         act_sheet_front.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :receipt_out => rand_amount, :tc => rand_tc
+       when 3 # checking in
+         act_sheet_front.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :checking_in => rand_amount, :tc => rand_tc
+       when 4 # checking out
+         act_sheet_front.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :checking_out => rand_amount, :tc => rand_tc
+       when 5 # other in
+         act_sheet_front.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :other_in => rand_amount, :tc => rand_tc
+       when 6 # other out
+         act_sheet_front.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :other_out => rand_amount, :tc => rand_tc
+       else # note
+         act_sheet_front.set_sheet_detail! i+1, :date => rand_date,  :note => str_note.sample, :note_amount => rand_amount
+       end
+
+
+    end
+
+
+    return act_sheet_front
+
+
+
+  end
+
+
+
+
+
+  def self.generate_back_account_sheet_test_data(previous_page = nil)
+
+     act_sheet_back = AccountSheetBackPage.new :previous_page => previous_page
+     
+
+
+    act_sheet_back.number_of_lines.times do|i| 
+
+      str_description = ["the quick brown fox jumps over to the lazy dog test d e s c r i p t i o n #{i+1}", "the quick brown fox jumps over to the #{i+1}"]
+      str_note = ["this is just a sample note", "note only note only note only"]
+  
+      sw = (1..7).to_a.sample
+
+      case (1..7).to_a.sample
+      when 1 # recepts in
+        act_sheet_back.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :receipt_in => rand_amount, :tc => rand_tc
+      when 2 # recepts out
+        act_sheet_back.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :receipt_out => rand_amount, :tc => rand_tc
+      when 3 # checking in
+        act_sheet_back.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :checking_in => rand_amount, :tc => rand_tc
+      when 4 # checking out
+        act_sheet_back.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :checking_out => rand_amount, :tc => rand_tc
+      when 5 # other in
+        act_sheet_back.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :other_in => rand_amount, :tc => rand_tc
+      when 6 # other out
+        act_sheet_back.set_sheet_detail! i+1, :date => rand_date,  :transaction_description => str_description.sample, :other_out => rand_amount, :tc => rand_tc
+      else # note
+        act_sheet_back.set_sheet_detail! i+1, :date => rand_date,  :note => str_note.sample, :note_amount => rand_amount
+      end
+
+
+    end
+
+
+    return act_sheet_back
+
+
+
+  end
+
+
+
+
+
+  def self.rand_date from = Time.now.beginning_of_month, to = (Time.now.end_of_month + 2.days)
+    t = Time.at(from + rand * (to.to_f - from.to_f))
+    DateTime.new(t.year,t.month,t.day)  
+  end
+
+  def self.rand_amount
+    #return 12345678.21
+    #(rand * (9999999.99-0.1) + 0.1).round(2)
+    (rand * (99999.99-0.1) + 0.1).round(2)
+  end
+
+  def self.rand_tc
+    ['W', 'K', 'C', 'I', 'T'].sample
+  end
+
+
+
+
+end
+
+
+end
+
+
+

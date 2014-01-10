@@ -1,0 +1,42 @@
+<div class="post">
+
+
+<p class="meta">Bank Withdrawal for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Bank Withdrawal</h2>
+<div class="entry">
+
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @bank_fee.date %>
+</p>
+
+<p>
+  <b>Bank account:</b>
+  <%= @bank_fee.bank_account %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @bank_fee.description %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @bank_fee.amount %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @bank_fee.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_accounting_period_bank_fee_path(@account, @accounting_period, @bank_fee) %> |
+<%= link_to 'Back', account_accounting_period_bank_fees_path(@account, @accounting_period) %>
+
+</div>
+</div>

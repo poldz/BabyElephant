@@ -1,0 +1,15 @@
+<div class="post">
+
+
+<p class="meta">Bank Tax for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Edit Bank Tax</h2>
+<div class="entry">
+
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@account, @accounting_period, @bank_taxis] %> |
+<%= link_to 'Back', account_accounting_period_bank_taxes_path(@account, @accounting_period) %>
+
+</div>
+</div>

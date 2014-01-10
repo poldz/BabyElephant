@@ -1,0 +1,40 @@
+
+<table class="gridtable">
+  <tr>
+    <th>Date</th>
+    <th>Bank account</th>
+    <th>Description</th>
+    <th>Amount</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bank_fees.each do |bank_fee| %>
+  <tr>
+    <td><%= bank_fee.date %></td>
+    <td><%= bank_fee.bank_account %></td>
+    <td><%= bank_fee.description %></td>
+    <td><%= bank_fee.amount %></td>
+    <td><%= link_to 'Show', [@account, @accounting_period, bank_fee], :data => { :colorbox => true} %></td>
+    <td><%= link_to 'Edit', edit_account_accounting_period_bank_fee_path(@account, @accounting_period, bank_fee), :data => { :colorbox => true} %></td>
+    <td><%= link_to 'Destroy', [@account, @accounting_period, bank_fee], method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+  </tr>
+<% end %>
+
+</table>
+
+
+
+
+
+<script type="text/javascript">
+  $(function() {
+    $('.best_in_place').bind("ajax:success", function(){
+      $.get('<%= summary_account_accounting_period_path(@accounting_period.account, @accounting_period) -%>', function(data) {
+        $('#accounting_period_summary').html(data);
+      });
+    })
+  });
+</script>
+

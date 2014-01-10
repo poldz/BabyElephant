@@ -1,0 +1,2 @@
+$("#bank_other_transaction_list").html("<%= escape_javascript(render :partial => 'list') %>");
+$.colorbox.close();

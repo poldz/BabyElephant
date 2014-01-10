@@ -1,0 +1,18 @@
+<div class="post">
+
+
+<p class="meta">Bank Tax for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Bank Taxes</h2>
+<div class="entry">
+
+<div>
+<%= render partial: 'list' %>
+</div>
+
+<br />
+
+<%= link_to 'New Bank tax', new_account_accounting_period_bank_taxis_path(@account, @accounting_period), :data => { :colorbox => true} %>
+
+
+</div>
+</div>

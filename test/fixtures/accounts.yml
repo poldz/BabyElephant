@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  account_name: MyString
+  account_type: MyString
+  account_number: MyString
+  city_or_town: MyString
+  province_or_state: MyString
+  account_servant_name: MyString
+  secritary_name: MyString
+  checking_account_rename: MyString
+  other_account_name: MyString
+
+two:
+  user: 
+  account_name: MyString
+  account_type: MyString
+  account_number: MyString
+  city_or_town: MyString
+  province_or_state: MyString
+  account_servant_name: MyString
+  secritary_name: MyString
+  checking_account_rename: MyString
+  other_account_name: MyString

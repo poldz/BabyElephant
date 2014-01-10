@@ -1,0 +1,18 @@
+<div class="post">
+
+
+<p class="meta">Bank Fees for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Bank Fees</h2>
+<div class="entry">
+
+<div id="bank_fees_list">
+  <% render :partial => 'list' %>
+</div>
+
+<br />
+
+<%= link_to 'New Bank fee', new_account_accounting_period_bank_fee_path(@account, @accounting_period), :data => { :colorbox => true} %>
+
+
+</div>
+</div>

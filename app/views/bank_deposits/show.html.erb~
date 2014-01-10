@@ -1,0 +1,34 @@
+<div class="post">
+
+
+<p class="meta">Bank Deposits for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Bank Deposit</h2>
+<div class="entry">
+
+
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <b>Date:</b>
+  <%= @bank_deposit.date %>
+</p>
+
+<p>
+  <b>Bank account:</b>
+  <%= @bank_deposit.bank_account %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @bank_deposit.amount %>
+</p>
+
+<p>
+  <b>Source of Fund:</b>
+  <%= @bank_deposit.source_of_fund %>
+</p>
+
+</div>
+</div>

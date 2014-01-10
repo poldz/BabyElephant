@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  account: 
+  created_by_id: 1
+  date: 2013-05-07 10:49:40
+  checking_account_rename: MyString
+  other_account_name: MyString
+  receipts_balance_forward: 9.99
+  checking_balance_forward: 9.99
+  other_account_balance_forward: 9.99
+  total_funds_at_bom: 9.99
+  total_funds_at_eom: 9.99
+  total_funds_rfsp: 9.99
+  total_funds_atcce: 9.99
+  surplus_deficit: 9.99
+  total_receipts: 9.99
+  total_expenditures: 9.99
+  for_worldwide_work: 9.99
+  for_kingdom_hall_construction_worldwide: 9.99
+
+two:
+  user: 
+  account: 
+  created_by_id: 1
+  date: 2013-05-07 10:49:40
+  checking_account_rename: MyString
+  other_account_name: MyString
+  receipts_balance_forward: 9.99
+  checking_balance_forward: 9.99
+  other_account_balance_forward: 9.99
+  total_funds_at_bom: 9.99
+  total_funds_at_eom: 9.99
+  total_funds_rfsp: 9.99
+  total_funds_atcce: 9.99
+  surplus_deficit: 9.99
+  total_receipts: 9.99
+  total_expenditures: 9.99
+  for_worldwide_work: 9.99
+  for_kingdom_hall_construction_worldwide: 9.99

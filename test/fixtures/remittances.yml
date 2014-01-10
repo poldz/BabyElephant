@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  account: 
+  accounting_period: 
+  bank_withdrawal: 
+  created_by_id: 1
+  date: 2013-05-08
+  source_of_fund: MyString
+  remittance_type: MyString
+  description: MyString
+  amount: 9.99
+  notes: MyString
+
+two:
+  user: 
+  account: 
+  accounting_period: 
+  bank_withdrawal: 
+  created_by_id: 1
+  date: 2013-05-08
+  source_of_fund: MyString
+  remittance_type: MyString
+  description: MyString
+  amount: 9.99
+  notes: MyString

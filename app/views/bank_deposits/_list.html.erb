@@ -1,0 +1,38 @@
+
+<table class="gridtable">
+  <tr>
+    <th>Date</th>
+    <th>Bank account</th>
+    <th>Amount</th>
+    <th>Source of Fund</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bank_deposits.each do |bank_deposit| %>
+  <tr>
+    <td><%= bank_deposit.date %></td>
+    <td><%= bank_deposit.bank_account %></td>
+    <td><%= bank_deposit.amount %></td>
+    <td><%= bank_deposit.source_of_fund %></td>
+    <td><%= link_to 'Show', [@account, @accounting_period, bank_deposit], :data => { :colorbox => true}  %></td>
+    <td><%= link_to 'Edit', edit_account_accounting_period_bank_deposit_path(@account, @accounting_period, bank_deposit), :data => { :colorbox => true}  %></td>
+    <td><%= link_to 'Destroy', [@account, @accounting_period, bank_deposit], method: :delete, data: { confirm: 'Are you sure?' }, :remote=>true %></td>
+  </tr>
+<% end %>
+</table>
+
+
+
+
+
+<script type="text/javascript">
+  $(function() {
+    $('.best_in_place').bind("ajax:success", function(){
+      $.get('<%= summary_account_accounting_period_path(@accounting_period.account, @accounting_period) -%>', function(data) {
+        $('#accounting_period_summary').html(data);
+      });
+    })
+  });
+</script>

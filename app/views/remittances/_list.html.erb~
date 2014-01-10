@@ -1,0 +1,32 @@
+
+
+<table class="gridtable">
+
+  <tr>
+    <th>Date</th>
+    <th>Source of fund</th>
+    <th>Bank Withdrawal</th>
+    <th>Remittance type</th>
+    <th>Description</th>
+    <th>Amount</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @remittances.each do |remittance| %>
+  <tr>
+    <td><%= remittance.date %></td>
+    <td><%= remittance.source_of_fund %></td>
+    <td><%= remittance.is_from_bank_withdrawal? ? remittance.bank_withdrawal.display_name : 'N/A' %></td>
+    <td><%= remittance.remittance_type %></td>
+    <td><%= remittance.description %></td>
+    <td><%= remittance.amount %></td>
+    <td><%= remittance.notes %></td>
+    <td><%= link_to 'Show', [@account, @accounting_period, remittance], :data => { :colorbox => true} %></td>
+    <td><%= link_to 'Edit', edit_account_accounting_period_remittance_path(@account, @accounting_period, remittance), :data => { :colorbox => true} %></td>
+    <td><%= link_to 'Destroy', [@account, @accounting_period, remittance], method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,45 @@
+<div class="post">
+
+
+<p class="meta">Bank Deposits for Account# <%= @account.account_number %>: <%= @account.account_name %> - Accounting Period: <%= @accounting_period.id %></p>
+<h2 class="title">Bank Deposits</h2>
+<div class="entry">
+
+
+
+<div id="bank_deposit_list">
+
+
+<table class="gridtable">
+  <tr>
+    <th>Date</th>
+    <th>Bank account</th>
+    <th>Amount</th>
+    <th>Source of Fund</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bank_deposits.each do |bank_deposit| %>
+  <tr>
+    <td><%= bank_deposit.date %></td>
+    <td><%= bank_deposit.bank_account %></td>
+    <td><%= bank_deposit.amount %></td>
+    <td><%= bank_deposit.source_of_fund %></td>
+    <td><%= link_to 'Show', [@account, @accounting_period, bank_deposit], :data => { :colorbox => true}  %></td>
+    <td><%= link_to 'Edit', edit_account_accounting_period_bank_deposit_path(@account, @accounting_period, bank_deposit), :data => { :colorbox => true}  %></td>
+    <td><%= link_to 'Destroy', [@account, @accounting_period, bank_deposit], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+</div>
+
+<br />
+
+<%= link_to 'New Bank deposit', new_account_accounting_period_bank_deposit_path(@account, @accounting_period), :data => { :colorbox => true}  %>
+
+
+</div>
+</div>
