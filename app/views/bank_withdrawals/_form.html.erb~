@@ -41,7 +41,7 @@ $(function() {
   var dateValue = $( "input#bank_withdrawal_date" ).val();
   
   $( "input#bank_withdrawal_date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-  $( "input#bank_deposit_date" ).datepicker( "setDate", dateValue );
+  $( "input#bank_withdrawal_date" ).datepicker( "setDate", dateValue );
 });
 
 

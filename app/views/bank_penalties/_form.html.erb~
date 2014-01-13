@@ -43,7 +43,7 @@ $(function() {
   var dateValue = $( "input#bank_penalty_date" ).val();
   
   $( "input#bank_penalty_date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-  $( "input#bank_deposit_date" ).datepicker( "setDate", dateValue );
+  $( "input#bank_penalty_date" ).datepicker( "setDate", dateValue );
 });
 
 

@@ -40,10 +40,10 @@ $(function() {
    }
 
   );
-  var dateValue = $( "input#bank_deposit_date" ).val();
+  var dateValue = $( "input#bank_fee_date" ).val();
   
-  $( "input#bank_deposit_date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-  $( "input#bank_deposit_date" ).datepicker( "setDate", dateValue );
+  $( "input#bank_fee_date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+  $( "input#bank_fee_date" ).datepicker( "setDate", dateValue );
 });
 
 

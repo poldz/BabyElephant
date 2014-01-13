@@ -31,12 +31,23 @@
 <% end %>
 
 
+
+
 <script>
 
 
 $(function() {
-  $('input.ui-date-picker').datepicker();
-  //$('input.ui-datetime-picker').datetimepicker();
+  $('input.ui-date-picker').datepicker(
+   {
+      changeMonth: true,
+      changeYear: true
+   }
+
+  );
+  var dateValue = $( "input#bank_other_transaction_date" ).val();
+  
+  $( "input#bank_other_transaction_date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+  $( "input#bank_other_transaction_date" ).datepicker( "setDate", dateValue );
 });
 
 

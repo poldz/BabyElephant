@@ -15,7 +15,7 @@
 
   <div class="form-inputs">
     <%= f.input :date, :as => :ui_date_picker %>
-    <%= f.input :bank_account, collection: ['Checking Account', 'Other Account'] %>
+    <%= f.input :bank_account, collection: bank_accounts_list %>
     <%= f.input :description %>
     <%= f.input :amount %>
      <%= f.input :notes, :as => :text %>
