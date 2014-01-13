@@ -30,4 +30,50 @@
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
-<% end %>expense
+<% end %>
+
+
+<script>
+
+
+$(function() {
+  $('input.ui-date-picker').datepicker(
+   {
+      changeMonth: true,
+      changeYear: true
+   }
+
+  );
+  var dateValue = $( "input#receipt_date" ).val();
+  
+  $( "input#receipt_date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+  $( "input#receipt_date" ).datepicker( "setDate", dateValue );
+
+
+  function compute_receipt(e) 
+  {  
+    var total = 0.00;
+    total += parseFloat($('#receipt_worldwide_work').val());
+    total += parseFloat($('#receipt_kingdom_hall_construction_worldwide').val());
+    total += parseFloat($('#receipt_local_congregation_expenses').val());
+    total += parseFloat($('#receipt_other_1_amount').val());
+    total += parseFloat($('#receipt_other_2_amount').val());
+
+    $("#receipt_total").val(total.toFixed(2));  
+  }
+
+
+
+  $("#receipt_worldwide_work, #receipt_kingdom_hall_construction_worldwide, #receipt_local_congregation_expenses, #receipt_other_1_amount, #receipt_other_2_amount").change(compute_receipt);
+  
+  $("#receipt_worldwide_work, #receipt_kingdom_hall_construction_worldwide, #receipt_local_congregation_expenses, #receipt_other_1_amount, #receipt_other_2_amount").keyup(compute_receipt);
+
+ compute_receipt();
+
+
+
+
+});
+
+
+</script>

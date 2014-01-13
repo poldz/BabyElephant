@@ -12,7 +12,7 @@
 
 <% @bank_deposits.each do |bank_deposit| %>
   <tr>
-    <td><%= bank_deposit.date %></td>
+    <td><%= best_in_place [@account, @accounting_period, bank_deposit], :date, type: :date, :display_with => lambda { |v| date_format(v) } %></td>
     <td><%= bank_deposit.bank_account %></td>
     <td><%= bank_deposit.amount %></td>
     <td><%= bank_deposit.source_of_fund %></td>
