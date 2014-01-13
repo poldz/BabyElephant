@@ -24,16 +24,32 @@ module ApplicationHelper
   end
 
   def bank_accounts_list
-    ['Checking Account', 'Other Account']
+    lst = [['Checking Account', 'Checking Account'], ['Other Account', 'Other Account']]
+
+    if @accounting_period && (!@accounting_period.checking_account_rename.blank? || !@accounting_period.other_account_name.blank?)
+       lst[0][0] = @accounting_period.checking_account_rename if @accounting_period.checking_account_rename
+       lst[1][0] = @accounting_period.other_account_name if @accounting_period.other_account_name
+    end
+
+    return lst
   end
 
   def source_of_funds_list
-    ['Cash on Hand', 'Checking Account', 'Other Bank Account']
+    lst = [['Cash on Hand', 'Cash on Hand'], ['Checking Account', 'Checking Account'], ['Other Bank Account', 'Other Bank Account']]
+
+
+
+    if @accounting_period && (!@accounting_period.checking_account_rename.blank? || !@accounting_period.other_account_name.blank?)
+       lst[1][0] = @accounting_period.checking_account_rename if @accounting_period.checking_account_rename
+       lst[2][0] = @accounting_period.other_account_name if @accounting_period.other_account_name
+    end
+
+    return lst
   end
 
   def date_format(d)
     return "" if d.nil?
-    return d.strftime("%b.&nbsp;%d,&nbsp;%Y")   
+    return d.strftime("%b.%d,%Y")   
   
   end
 
