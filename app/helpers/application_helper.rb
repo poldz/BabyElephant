@@ -31,4 +31,15 @@ module ApplicationHelper
     ['Cash on Hand', 'Checking Account', 'Other Bank Account']
   end
 
+  def date_format(d)
+    return "" if d.nil?
+    return d.strftime("%b.%d,%Y")   
+  
+  end
+
+  def money_format(a)
+    return "0.00" if a.nil?
+    return ("%.2f" % a)
+  end
+
 end
