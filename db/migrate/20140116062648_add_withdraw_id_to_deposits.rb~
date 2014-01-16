@@ -1,0 +1,4 @@
+class AddWithdrawIdToDeposits < ActiveRecord::Migration
+  def change
+  end
+end
