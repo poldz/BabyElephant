@@ -47,6 +47,18 @@ module ApplicationHelper
     return lst
   end
 
+
+  def back_account_display(val)
+
+    if @accounting_period && (!@accounting_period.checking_account_rename.blank? || !@accounting_period.other_account_name.blank?)
+       return @accounting_period.checking_account_rename if @accounting_period.checking_account_rename && val == 'Checking Account'
+       return @accounting_period.other_account_name if @accounting_period.other_account_name && val == 'Other Bank Account'
+    end
+
+    return val
+
+  end
+
   def date_format(d)
     return "" if d.nil?
     return d.strftime("%b.%d,%Y")   

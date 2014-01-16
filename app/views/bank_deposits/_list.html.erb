@@ -13,8 +13,8 @@
 <% @bank_deposits.each do |bank_deposit| %>
   <tr>
     <td><%= best_in_place [@account, @accounting_period, bank_deposit], :date, type: :date, :display_with => lambda { |v| date_format(v) } %></td>
-    <td><%= bank_deposit.bank_account %></td>
-    <td><%= bank_deposit.amount %></td>
+    <td><%= back_account_display(bank_deposit.bank_account) %></td>
+    <td><%= best_in_place [@account, @accounting_period, bank_deposit], :amount, type: :input, nil: '--', :display_with => lambda { |v| money_format(v) } %></td>
     <td><%= bank_deposit.source_of_fund %></td>
     <td><%= link_to 'Show', [@account, @accounting_period, bank_deposit], :data => { :colorbox => true}  %></td>
     <td><%= link_to 'Edit', edit_account_accounting_period_bank_deposit_path(@account, @accounting_period, bank_deposit), :data => { :colorbox => true}  %></td>
