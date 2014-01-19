@@ -27,7 +27,7 @@
     <li><%= link_to "Bank Penalties", account_accounting_period_bank_penalties_path(@account, @accounting_period) %></li>
     <li><%= link_to "Bank Fees", account_accounting_period_bank_fees_path(@account, @accounting_period) %></li>
     <li><%= link_to "Bank Other Transactions", account_accounting_period_bank_other_transactions_path(@account, @accounting_period) %></li>
-    <li><a href="#tabs-2">sample here</a></li>
+    <li><a href="#tabs-2">Summary</a></li>
   </ul>
   <div id="tab-accounting-period-detail">
    
@@ -180,7 +180,7 @@
 
 <script>
   $(function() {
-    //$( "#accordion" ).accordion(cache: true);
+    //$( "#accordion" ).accordion({cache: false});
     $( "#tabs" ).tabs();
   });
   </script>
