@@ -52,11 +52,12 @@ class BankWithdrawal < ActiveRecord::Base
 
   def is_same_day?(d)
      return false unless d
+     return false unless d.date
      return false unless date
 
-     return false if date.year != d.year
-     return false if date.month != d.month
-     return false if date.day != d.day
+     return false if date.year != d.date.year
+     return false if date.month != d.date.month
+     return false if date.day != d.date.day
 
 
      return true

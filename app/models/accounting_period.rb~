@@ -240,12 +240,13 @@ class AccountingPeriod < ActiveRecord::Base
     self.bank_withdrawals.each do |w|
       t = nil
       bank_account_hash = {'Checking Account' => :checking_out, 'Other Account' => :other_out}
+      bank_account_hash_in = {'Checking Account' => :checking_in, 'Other Account' => :other_in}
 
       if w.display_with_deposit?
-
-      else
-
-        
+        # TODO: this does not support multiple deposits for bank transfer yet
+        d = w.bank_deposits.first
+        t = PdfReportGenerator::AccountSheet::AccountSheetTransaction.new(:date => w.date,  :transaction_description => 'Bank Transfer', bank_account_hash[w.bank_account] => w.amount, bank_account_hash_in[d.bank_account] => )  
+      else       
 
         t = PdfReportGenerator::AccountSheet::AccountSheetTransaction.new(:date => w.date,  :transaction_description => 'Bank Withdrawal', bank_account_hash[w.bank_account] => w.amount)  
 
