@@ -166,7 +166,11 @@ class AccountSheetBackPage < AccountSheetPageBase
   def render_account_sheet_detail!(pdf_obj, line, sheet_item)
 
     if sheet_item.is_note?
-      text_box(pdf_obj, 30, (SHEET_START_TOP + (line * 11.3)), "#{sheet_item.note} (#{money_format(sheet_item.note_amount)})", :size => 6)
+      if sheet_item.note_amount.nil?
+        text_box(pdf_obj, 30, (SHEET_START_TOP + (line * 11.3)), "#{sheet_item.note}", :size => 6)
+      else
+        text_box(pdf_obj, 30, (SHEET_START_TOP + (line * 11.3)), "#{sheet_item.note} (#{money_format(sheet_item.note_amount)})", :size => 6)
+      end
     else
       # transaction date
       if sheet_item.date && (sheet_item.date.month == date.month && sheet_item.date.year == date.year)

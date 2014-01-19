@@ -20,6 +20,25 @@ class BankWithdrawal < ActiveRecord::Base
     "[#{date}] #{bank_account} (#{amount})"
   end
 
+  def is_deposited?
+    return false if self.bank_deposits.blank?
+    return true    
+  end
+
+  def is_all_deposit_same_day?
+    return false unless is_deposited?
+  
+    self.bank_deposits.each do |d|
+      return false unless is_same_day?(d)
+    end
+
+    return true  
+  end
+
+
+  def display_with_deposit?
+    return is_deposited? && is_all_deposit_same_day?
+  end
 
 
   protected
@@ -27,6 +46,21 @@ class BankWithdrawal < ActiveRecord::Base
   def set_account_and_user
    self.account = self.accounting_period.account
    self.user = self.accounting_period.user
+  end
+
+  private
+
+  def is_same_day?(d)
+     return false unless d
+     return false unless date
+
+     return false if date.year != d.year
+     return false if date.month != d.month
+     return false if date.day != d.day
+
+
+     return true
+
   end
 
 end

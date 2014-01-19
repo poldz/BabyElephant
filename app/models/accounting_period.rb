@@ -234,9 +234,26 @@ class AccountingPeriod < ActiveRecord::Base
     trans = []
 
     self.bank_withdrawals.each do |w|
-      bank_account_hash = {'Checking Account' => :checking_out, 'Other Account' => :other_out}
+      t = nil
 
-      t = PdfReportGenerator::AccountSheet::AccountSheetTransaction.new(:date => w.date,  :transaction_description => 'Bank Withdrawal', bank_account_hash[w.bank_account] => w.amount)  
+      if w.display_with_deposit?
+
+      else
+
+        bank_account_hash = {'Checking Account' => :checking_out, 'Other Account' => :other_out}
+
+        t = PdfReportGenerator::AccountSheet::AccountSheetTransaction.new(:date => w.date,  :transaction_description => 'Bank Withdrawal', bank_account_hash[w.bank_account] => w.amount)  
+
+        
+
+     
+
+        
+      end
+
+      if w.note && !w.note.blank?
+        t.add_note! w.note, nil
+      end
 
       w.remittances.each do |r|
         t.add_note! r.name, r.amount
@@ -246,8 +263,6 @@ class AccountingPeriod < ActiveRecord::Base
       w.expenses.each do |e|
         t.add_note! e.name, e.amount
       end
-
-     
 
       trans << t     
 
