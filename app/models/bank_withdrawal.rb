@@ -6,6 +6,8 @@ class BankWithdrawal < ActiveRecord::Base
   has_many :expenses
   has_many :remittances
 
+  has_many :bank_deposits
+
 
   attr_accessible :amount, :bank_account, :created_by_id, :date, :note
 
