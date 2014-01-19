@@ -20,6 +20,11 @@ class BankDeposit < ActiveRecord::Base
     return true if self.source_of_fund == 'Withdrawal' && self.bank_withdrawal
   end
 
+  def display_with_withdrawal?
+    return true if self.bank_withdrawal && self.bank_withdrawal.display_with_deposit?
+    return false
+  end
+
 
 
   protected

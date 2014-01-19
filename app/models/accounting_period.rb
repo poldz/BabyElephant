@@ -244,12 +244,8 @@ class AccountingPeriod < ActiveRecord::Base
 
         t = PdfReportGenerator::AccountSheet::AccountSheetTransaction.new(:date => w.date,  :transaction_description => 'Bank Withdrawal', bank_account_hash[w.bank_account] => w.amount)  
 
-        
-
-     
-
-        
       end
+
 
       if w.note && !w.note.blank?
         t.add_note! w.note, nil
@@ -259,11 +255,11 @@ class AccountingPeriod < ActiveRecord::Base
         t.add_note! r.name, r.amount
       end
 
-
       w.expenses.each do |e|
         t.add_note! e.name, e.amount
       end
 
+      # add to transaction set
       trans << t     
 
     end

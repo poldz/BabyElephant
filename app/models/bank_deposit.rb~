@@ -3,7 +3,7 @@ class BankDeposit < ActiveRecord::Base
   belongs_to :account
   belongs_to :accounting_period
   belongs_to :bank_withdrawal
-  attr_accessible :source_of_fund, :amount, :bank_account, :created_by_id, :date, :bank_withdrawal_id
+  attr_accessible :source_of_fund, :amount, :bank_account, :created_by_id, :date, :bank_withdrawal_id, :note
 
 
   before_validation :set_account_and_user
@@ -18,6 +18,10 @@ class BankDeposit < ActiveRecord::Base
 
   def is_from_bank_withdrawal?
     return true if self.source_of_fund == 'Withdrawal' && self.bank_withdrawal
+  end
+
+  def display_with_withdrawal?
+
   end
 
 
