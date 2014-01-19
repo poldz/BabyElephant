@@ -25,3 +25,17 @@
   </tr>
 <% end %>
 </table>
+
+
+
+
+
+<script type="text/javascript">
+  $(function() {
+    $('.best_in_place').bind("ajax:success", function(){
+      $.get('<%= summary_account_accounting_period_path(@accounting_period.account, @accounting_period) -%>', function(data) {
+        $('#accounting_period_summary').html(data);
+      });
+    })
+  });
+</script>

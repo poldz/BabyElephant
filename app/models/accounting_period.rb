@@ -237,10 +237,12 @@ class AccountingPeriod < ActiveRecord::Base
   def bank_withdrawals_transactions 
     trans = []
 
+    bank_account_hash = {'Checking Account' => :checking_out, 'Other Account' => :other_out}
+    bank_account_hash_in = {'Checking Account' => :checking_in, 'Other Account' => :other_in}
+
     self.bank_withdrawals.each do |w|
       t = nil
-      bank_account_hash = {'Checking Account' => :checking_out, 'Other Account' => :other_out}
-      bank_account_hash_in = {'Checking Account' => :checking_in, 'Other Account' => :other_in}
+      
 
       if w.display_with_deposit?
         # TODO: this does not support multiple deposits for bank transfer yet
@@ -269,6 +271,34 @@ class AccountingPeriod < ActiveRecord::Base
       trans << t     
 
     end
+
+    return trans
+
+  end
+
+  def bank_other_transactions_transactions
+    trans =[]
+
+    bank_account_hash = {'Checking Account' => :checking_out, 'Other Account' => :other_out}
+    bank_account_hash_in = {'Checking Account' => :checking_in, 'Other Account' => :other_in}
+
+    self.bank_other_transactions.each do |bot|
+      t = nil
+  
+      if bot.transaction_type == 'Debit'
+
+        t = PdfReportGenerator::AccountSheet::AccountSheetTransaction.new(:date => bot.date,  :transaction_description => bot.description, bank_account_hash_in[bot.bank_account] => bot.amount)  
+
+      elsif bot.transaction_type == 'Credit'
+        t = PdfReportGenerator::AccountSheet::AccountSheetTransaction.new(:date => bot.date,  :transaction_description => bot.description, bank_account_hash[bot.bank_account] => bot.amount)  
+ 
+      else
+        raise "Error, this should not be here, transaction_type is unknown #{bot.transaction_type}"
+      end
+
+      trans << t
+    end
+
 
     return trans
 
@@ -339,6 +369,7 @@ class AccountingPeriod < ActiveRecord::Base
     trans += bank_interests_transactions 
     trans += bank_taxes_transactions 
     trans += bank_withdrawals_transactions 
+    trans += bank_other_transactions_transactions
     trans += cash_expenses_transactions
     trans += cash_remittances_transactions
 
