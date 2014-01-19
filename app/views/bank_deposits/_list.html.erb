@@ -5,6 +5,7 @@
     <th>Bank account</th>
     <th>Amount</th>
     <th>Source of Fund</th>
+    <th>Note</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,9 +14,10 @@
 <% @bank_deposits.each do |bank_deposit| %>
   <tr>
     <td><%= best_in_place [@account, @accounting_period, bank_deposit], :date, type: :date, :display_with => lambda { |v| date_format(v) } %></td>
-    <td><%= back_account_display(bank_deposit.bank_account) %></td>
+    <td><%= bank_account_display(bank_deposit.bank_account) %></td>
     <td><%= best_in_place [@account, @accounting_period, bank_deposit], :amount, type: :input, nil: '--', :display_with => lambda { |v| money_format(v) } %></td>
     <td><%= bank_deposit.source_of_fund %></td>
+    <td><%= bank_deposit.note %></td>
     <td><%= link_to 'Show', [@account, @accounting_period, bank_deposit], :data => { :colorbox => true}  %></td>
     <td><%= link_to 'Edit', edit_account_accounting_period_bank_deposit_path(@account, @accounting_period, bank_deposit), :data => { :colorbox => true}  %></td>
     <td><%= link_to 'Destroy', [@account, @accounting_period, bank_deposit], method: :delete, data: { confirm: 'Are you sure?' }, :remote=>true %></td>

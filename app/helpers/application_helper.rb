@@ -48,7 +48,7 @@ module ApplicationHelper
   end
 
 
-  def back_account_display(val)
+  def bank_account_display(val)
 
     if @accounting_period && (!@accounting_period.checking_account_rename.blank? || !@accounting_period.other_account_name.blank?)
        return @accounting_period.checking_account_rename if @accounting_period.checking_account_rename && val == 'Checking Account'

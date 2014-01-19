@@ -27,8 +27,12 @@
 </p>
 
 
-<%= link_to 'Edit', edit_account_accounting_period_bank_withdrawal_path(@account, @accounting_period, @bank_withdrawal) %> |
-<%= link_to 'Back', account_accounting_period_bank_withdrawals_path(@account, @accounting_period) %>
+
+<p>
+  <b>Note:</b>
+  <%= @bank_withdrawal.amount %>
+</p>
+
 
 
 </div>

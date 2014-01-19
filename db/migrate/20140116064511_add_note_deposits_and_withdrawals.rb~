@@ -1,0 +1,6 @@
+class AddNoteDepositsAndWithdrawals < ActiveRecord::Migration
+  def change
+    add_column :bank_deposits, :note, :integer
+    add_column :bank_withdrawals, :note, :integer
+  end
+end

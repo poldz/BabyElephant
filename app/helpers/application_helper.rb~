@@ -55,6 +55,8 @@ module ApplicationHelper
        return @accounting_period.other_account_name if @accounting_period.other_account_name && val == 'Other Bank Account'
     end
 
+    return val
+
   end
 
   def date_format(d)

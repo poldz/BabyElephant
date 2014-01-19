@@ -30,5 +30,11 @@
   <%= @bank_deposit.source_of_fund %>
 </p>
 
+<p>
+  <b>Note:</b>
+  <%= @bank_deposit.amount %>
+</p>
+
+
 </div>
 </div>

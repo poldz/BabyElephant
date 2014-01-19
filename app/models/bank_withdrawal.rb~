@@ -15,7 +15,7 @@ class BankWithdrawal < ActiveRecord::Base
   validates :bank_account, :presence => true
 
   def display_name
-    "#[{date}] #{bank_account} (#{amount})"
+    "[#{date}] #{bank_account} (#{amount})"
   end
 
 

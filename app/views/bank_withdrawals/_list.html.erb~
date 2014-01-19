@@ -4,6 +4,7 @@
     <th>Date</th>
     <th>Bank account</th>
     <th>Amount</th>
+    <th>Note</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +13,7 @@
 <% @bank_withdrawals.each do |bank_withdrawal| %>
   <tr>
     <td><%= bank_withdrawal.date %></td>
-    <td><%= bank_withdrawal.bank_account %></td>
+    <td><%= bank_account_display(bank_withdrawal.bank_account) %></td>
     <td><%= bank_withdrawal.amount %></td>
     <td><%= link_to 'Show', [@account, @accounting_period, bank_withdrawal], :data => { :colorbox => true} %></td>
     <td><%= link_to 'Edit', edit_account_accounting_period_bank_withdrawal_path(@account, @accounting_period, bank_withdrawal), :data => { :colorbox => true} %></td>
@@ -20,3 +21,17 @@
   </tr>
 <% end %>
 </table>
+
+
+
+
+
+<script type="text/javascript">
+  $(function() {
+    $('.best_in_place').bind("ajax:success", function(){
+      $.get('<%= summary_account_accounting_period_path(@accounting_period.account, @accounting_period) -%>', function(data) {
+        $('#accounting_period_summary').html(data);
+      });
+    })
+  });
+</script>

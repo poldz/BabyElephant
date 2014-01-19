@@ -17,7 +17,7 @@
     <%= f.input :date, :as => :ui_date_picker %>
     <%= f.input :bank_account, collection: bank_accounts_list, include_blank: false  %>
     <%= f.input :amount %>
-    <%= f.input :source_of_fund, collection: ['Cash on Hand', 'Checking Account', 'Other Bank Account'], include_blank: false  %>
+    <%= f.input :source_of_fund, collection: source_of_funds_list, include_blank: false  %>
   </div>
 
   <div class="form-actions">
