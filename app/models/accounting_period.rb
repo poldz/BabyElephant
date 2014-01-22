@@ -440,6 +440,11 @@ class AccountingPeriod < ActiveRecord::Base
     rep.add_reciepts!("Bank Interest", total_interests) if total_interests and total_interests > 0.00
 
 
+    bank_other_transactions.where("transaction_type = ?", 'Debit').each do |bot|
+      rep.add_reciepts! bot.description, bot.amount
+    end
+
+
     # Add Expenditures
 
     remittances.where('remittance_type not in (?)', ['Worldwide Work', 'Kingdom Hall Construction Worldwide']).each do |r|
@@ -454,6 +459,11 @@ class AccountingPeriod < ActiveRecord::Base
 
     total_taxes = bank_taxes.sum(:amount)
     rep.add_expenditure! "Bank Withholding Tax", total_taxes if total_taxes and total_taxes > 0.00
+
+
+    bank_other_transactions.where("transaction_type = ?", 'Credit').each do |bot|
+      rep.add_expenditure! bot.description, bot.amount
+    end
 
 
     # Add Congregation Funds Reserved For Special Purpose
