@@ -95,6 +95,20 @@ class AccountingPeriod < ActiveRecord::Base
     (total_bank_funds_at_beginning_of_month + current_total_bank_deposits + current_total_bank_interests - current_total_bank_withdrawals - current_total_bank_taxes).round(2)
   end
 
+  def current_total_bank_withdrawals_minus_exp_rem
+    total = 0.0
+
+    self.bank_withdrawals.each do |w|
+       total += w.amount
+       total -= w.expenses.sum(:amount)
+       total -= w.remittances.sum(:amount)
+
+    end
+
+
+    return total.round(2)
+  end
+
 
   # current for receipts undeposited
 
@@ -102,6 +116,7 @@ class AccountingPeriod < ActiveRecord::Base
     total = 0.00
     total += self.receipts_balance_forward
     total += self.receipts.sum(:total)
+    total += current_total_bank_withdrawals_minus_exp_rem
     total -= current_total_bank_deposits
     total -= self.expenses.where('source_of_fund = ?', 'Cash on Hand').sum(:amount)
     total -= self.remittances.where('source_of_fund = ?', 'Cash on Hand').sum(:amount)
@@ -116,10 +131,15 @@ class AccountingPeriod < ActiveRecord::Base
     total += self.checking_balance_forward
     total += self.bank_deposits.where('bank_account = ?', 'Checking Account').sum(&:amount)
     total += self.bank_interests.where('bank_account = ?', 'Checking Account').sum(&:amount)
+    total += self.bank_other_transactions.where('bank_account = ? and transaction_type = ?', 'Checking Account', 'Debit').sum(&:amount)
+    
+
     total -= self.bank_taxes.where('bank_account = ?', 'Checking Account').sum(&:amount)    
     total -= self.bank_withdrawals.where('bank_account = ?', 'Checking Account').sum(&:amount)
     total -= self.bank_penalties.where('bank_account = ?', 'Checking Account').sum(&:amount)
     total -= self.bank_fees.where('bank_account = ?', 'Checking Account').sum(&:amount)
+    total -= self.bank_other_transactions.where('bank_account = ? and transaction_type = ?', 'Checking Account', 'Credit').sum(&:amount)
+    
    
     return total.round(2)
   end
@@ -131,10 +151,15 @@ class AccountingPeriod < ActiveRecord::Base
     total += self.other_account_balance_forward
     total += self.bank_deposits.where('bank_account = ?', 'Other Account').sum(&:amount)
     total += self.bank_interests.where('bank_account = ?', 'Other Account').sum(&:amount)
+    total += self.bank_other_transactions.where('bank_account = ? and transaction_type = ?', 'Other Account', 'Debit').sum(&:amount)
+
+
     total -= self.bank_taxes.where('bank_account = ?', 'Other Account').sum(&:amount)    
     total -= self.bank_withdrawals.where('bank_account = ?', 'Other Account').sum(&:amount)
     total -= self.bank_penalties.where('bank_account = ?', 'Other Account').sum(&:amount)
     total -= self.bank_fees.where('bank_account = ?', 'Other Account').sum(&:amount)
+    total -= self.bank_other_transactions.where('bank_account = ? and transaction_type = ?', 'Other Account', 'Credit').sum(&:amount)
+    
    
     return total.round(2)
 

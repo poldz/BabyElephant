@@ -44,37 +44,21 @@
       <table class="gridtable" style="text-align: right; margin-left: 40px;">
     
         <tbody class="act_summary_details">
-          <tr>
-            <td title="Receipts Balance Forward"><strong>Receipts Balance Forward:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.receipts_balance_forward, precision: 2) %></td>
-          </tr>
-
+          
           <tr>
             <td title="Total Funds not Deposited"><strong>Undeposited Funds:</strong></td>      
             <td><%= number_with_precision(@accounting_period.current_total_receipts_undeposited, precision: 2) %></td>
           </tr>
 
           
-          <tr>
-            <td title="Checking Account Balance Forward"><strong>Checking Account Balance Forward:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.checking_balance_forward, precision: 2) %></td>
-          </tr>
 
           <tr>
-            <td title="Checking Account Balance"><strong>Checking Account Balance:</strong></td>      
+            <td title="<%= bank_account_display('Checking Account') -%> Balance"><strong><%= bank_account_display('Checking Account') -%> Balance:</strong></td>      
             <td><%= number_with_precision(@accounting_period.current_total_checking_balance, precision: 2) %></td>
           </tr>
 
           <tr>
-            <td title="Other Account Balance Forward"><strong>Other Account Balance Forward:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.other_account_balance_forward, precision: 2) %></td>
-          </tr>
-          <tr>
-            <td title="Other Account Balance"><strong>Other Account Balance:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.current_total_other_account_balance, precision: 2) %></td>
-          </tr>
-          <tr>
-            <td title="Total Funds"><strong>Total Funds:</strong></td>      
+            <td title="<%= bank_account_display('Other Account') -%> Balance"><strong><%= bank_account_display('Other Account') -%>  Balance:</strong></td>      
             <td><%= number_with_precision(@accounting_period.current_total_other_account_balance, precision: 2) %></td>
           </tr>
 
@@ -83,18 +67,7 @@
 
 
 
-          <tr>
-            <td title="Total Bank Funds At Beginning of the month"><strong>Bank Beginning Funds:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.total_bank_funds_at_beginning_of_month, precision: 2) %></td>
-          </tr>
-          <tr>
-            <td title="Total Bank Deposits"><strong>Deposits:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.current_total_bank_deposits, precision: 2) %></td>
-          </tr>
-          <tr>
-            <td title="Total Bank Withdrawals"><strong>Withdrawals:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.current_total_bank_withdrawals, precision: 2) %></td>
-          </tr>
+          
           <tr>
             <td title="Total Bank Interests"><strong>Interests:</strong></td>      
             <td><%= number_with_precision(@accounting_period.current_total_bank_interests, precision: 2) %></td>
@@ -107,11 +80,65 @@
             <td title="Total Bank Balance"><strong>Bank Balance:</strong></td>      
             <td><%= number_with_precision(@accounting_period.current_total_bank_balance, precision: 2) %></td>
           </tr>
+          <tr>
+            <td title="Total Funds"><strong>Total Funds:</strong></td>      
+            <td><%= number_with_precision(@accounting_period.current_total_funds, precision: 2) %></td>
+          </tr>
 
         </tbody>
       </table>
 
   </p>
+
+
+
+
+
+
+
+
+
+
+
+
+  <p>
+    <strong>Forwarded Funds Summary:</strong>
+  </p>
+  <p>
+      
+      <table class="gridtable" style="text-align: right; margin-left: 40px;">
+    
+        <tbody class="act_summary_details">
+          <tr>
+            <td title="Receipts Balance Forward"><strong>Receipts Balance Forward:</strong></td>      
+            <td><%= number_with_precision(@accounting_period.receipts_balance_forward, precision: 2) %></td>
+          </tr>
+
+
+          <tr>
+            <td title="<%= bank_account_display('Checking Account') -%> Balance Forward"><strong><%= bank_account_display('Checking Account') -%> Balance Forward:</strong></td>      
+            <td><%= number_with_precision(@accounting_period.checking_balance_forward, precision: 2) %></td>
+          </tr>
+
+          <tr>
+            <td title="<%= bank_account_display('Other Account') -%> Balance Forward"><strong><%= bank_account_display('Other Account') -%> Balance Forward:</strong></td>      
+            <td><%= number_with_precision(@accounting_period.other_balance_forward, precision: 2) %></td>
+          </tr>
+
+          <tr>
+            <td title="Total Bank Funds At Beginning of the month"><strong>Bank Beginning Funds:</strong></td>      
+            <td><%= number_with_precision(@accounting_period.total_bank_funds_at_beginning_of_month, precision: 2) %></td>
+          </tr>
+          
+
+        </tbody>
+      </table>
+
+  </p>
+
+
+
+
 
   <script>
     $(function() {
