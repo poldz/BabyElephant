@@ -22,7 +22,7 @@ class AccountingPeriodsController < ApplicationController
 
 
 
-  def summary
+  def period_computations
     @accounting_period = @account.accounting_periods.find(params[:id])
 
     respond_to do |format|

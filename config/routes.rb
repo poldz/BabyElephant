@@ -14,8 +14,8 @@ CongregationAccounts::Application.routes.draw do
 
       member do
         get 'generate_report'
+        get 'forecast'
         get 'summary'
-        get 'period_computations'
       end
 
 
