@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140116064511) do
+ActiveRecord::Schema.define(:version => 20140205053850) do
 
   create_table "accounting_periods", :force => true do |t|
     t.integer  "user_id"
@@ -52,8 +52,10 @@ ActiveRecord::Schema.define(:version => 20140116064511) do
     t.string   "secritary_name"
     t.string   "checking_account_rename"
     t.string   "other_account_name"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "society_bank_account_name"
+    t.string   "society_bank_account_number"
   end
 
   add_index "accounts", ["user_id"], :name => "index_accounts_on_user_id"
