@@ -11,8 +11,8 @@ class Account < ActiveRecord::Base
   #has_many :bank_fees
   #has_many :bank_other_transactions
 
-  has_many :expenses
-  has_many :remittances
+  #has_many :expenses
+  #has_many :remittances
 
 
   attr_accessible :account_name, :account_number, :account_servant_name, :account_type, :checking_account_rename, :city_or_town, :other_account_name, 

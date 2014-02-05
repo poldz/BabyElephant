@@ -21,7 +21,8 @@
   <%= f.input :secritary_name %>
   <%= f.input :checking_account_rename %>
   <%= f.input :other_account_name %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :society_bank_account_name %>
+  <%= f.input :other_account_name %>
+
+  <%= f.button :submit %>
 <% end %>
