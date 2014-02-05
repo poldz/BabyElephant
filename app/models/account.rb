@@ -16,7 +16,8 @@ class Account < ActiveRecord::Base
 
 
   attr_accessible :account_name, :account_number, :account_servant_name, :account_type, :checking_account_rename, :city_or_town, :other_account_name, 
-                  :province_or_state, :secritary_name, :society_bank_account_name, :society_bank_account_number
+                  :province_or_state, :secritary_name, :society_bank_account_name, :society_bank_account_number,
+                  :checking_account_name_on_bank_account, :checking_account_bank_account_number, :other_account_name_on_bank_account, :other_account_bank_account_number
 
   validates :account_name, :account_type, :account_number, :account_servant_name, :city_or_town, :province_or_state, :presence => true
 end

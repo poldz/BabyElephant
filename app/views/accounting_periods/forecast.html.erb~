@@ -1,42 +1,66 @@
 
-  <h2 style="font-size:14px; font-weight: bold;"> Summary ( <%= @accounting_period.date.strftime("%b %Y") if @accounting_period.date %> )</h2>
+  <h2 style="font-size:14px; font-weight: bold;"> Forecast for ( <%= @accounting_period.date.strftime("%b %Y") if @accounting_period.date %> )</h2>
+
+
 
   <p>
-    <h3>Remittance for Society:</h3>
+    <h3> Congregation Bank Account Info:</h3>
+ 
+
+    <p>
+      <strong><%= bank_account_display('Checking Account') -%> Account Name:</strong> <%= @account.checking_account_name_on_bank_account %>
+      <br/>
+      <strong><%= bank_account_display('Checking Account') -%> Account Number:</strong> <%= @account.checking_account_bank_account_number %>
+    </p>
+
+
+    <p>
+      <strong><%= bank_account_display('Other Account') -%> Account Name:</strong> <%= @account.other_account_name_on_bank_account %>
+      <br/>
+      <strong><%= bank_account_display('Other Account') -%> Account Number:</strong> <%= @account.other_account_bank_account_number %>
+    </p>
+
   </p>
 
-  <p>
-    <strong>Society's Account Name:</strong> <%= @account.society_bank_account_name %>
-  </p>
+
+
+
 
   <p>
-    <strong>Society's Account Number:</strong> <%= @account.society_bank_account_number %>
-  </p>
-  <p>
+    <h3>Remittance for Society Forecast:</h3>
+ 
+    <p>
+      <strong>Society's Account Name:</strong> <%= @account.society_bank_account_name %>
+      <br/>
+      <strong>Society's Account Number:</strong> <%= @account.society_bank_account_number %>
+    </p>
+    <p>
       
-      <table class="gridtable" style="text-align: right; margin-left: 40px;">
-    
-        <tbody class="act_summary_details">
-          <tr>
-            <td title="Total Contributions - Worldwide Work"><strong>Total Contributions for Worldwide Work:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.current_total_worldwide_work, precision: 2) %></td>
-          </tr>
+        <table class="gridtable" style="text-align: right; margin-left: 40px;">
+      
+          <tbody class="act_summary_details">
+            <tr>
+              <td title="Total Contributions - Worldwide Work"><strong>Total Contributions for Worldwide Work:</strong></td>      
+              <td><%= number_with_precision(@accounting_period.current_total_worldwide_work, precision: 2) %></td>
+            </tr>
 
-          <tr>
-            <td title="Total Contributions - Kingdom Hall Construction Worldwide"><strong>Total Contributions for Kingdom Hall Construction Worldwide:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.current_total_kingdom_hall_construction_worldwide, precision: 2) %></td>
-          </tr>
+            <tr>
+              <td title="Total Contributions - Kingdom Hall Construction Worldwide"><strong>Total Contributions for Kingdom Hall Construction Worldwide:</strong></td>      
+              <td><%= number_with_precision(@accounting_period.current_total_kingdom_hall_construction_worldwide, precision: 2) %></td>
+            </tr>
 
-          <tr>
-            <td colspan=2><hr/></td>
-          </tr>
+            <tr>
+              <td colspan=2></td>
+            </tr>
 
-          <tr>
-            <td title="Total Contributions"><strong>Total Contributions for Society:</strong></td>      
-            <td><%= number_with_precision(@accounting_period.remittances.sum(:amount), precision: 2) %></td>
-          </tr>
-        </tbody>
-      </table>
+            <tr>
+              <td title="Total Contributions"><strong>Total Contributions for Society:</strong></td>      
+              <td><%= number_with_precision(@accounting_period.remittances.sum(:amount), precision: 2) %></td>
+            </tr>
+          </tbody>
+        </table>
+
+    </p>
 
   </p>
 
