@@ -9,6 +9,19 @@ class AccountingPeriodsController < ApplicationController
     send_file rep
   end
 
+
+  def summary
+    @accounting_period = @account.accounting_periods.find(params[:id])
+
+    respond_to do |format|
+      format.html { render layout: false }
+      format.json { render json: @accounting_period }
+    end
+
+  end
+
+
+
   def summary
     @accounting_period = @account.accounting_periods.find(params[:id])
 
@@ -55,7 +68,7 @@ class AccountingPeriodsController < ApplicationController
       @accounting_period.receipts_balance_forward = last_act_period.current_total_receipts_undeposited if @accounting_period.receipts_balance_forward.nil? or @accounting_period.receipts_balance_forward <= 0.00
       @accounting_period.checking_balance_forward = last_act_period.current_total_checking_balance if @accounting_period.checking_balance_forward.nil? or @accounting_period.checking_balance_forward <= 0.00
       @accounting_period.other_account_balance_forward = last_act_period.current_total_other_account_balance if @accounting_period.other_account_balance_forward.nil? or @accounting_period.other_account_balance_forward <= 0.00
-      @accounting_period.total_funds_at_bom = last_act_period.current_total_funds unless @accounting_period.total_funds_at_bom or @accounting_period.total_funds_at_bom <= 0.00
+      @accounting_period.total_funds_at_bom = last_act_period.current_total_funds if @accounting_period.total_funds_at_bom.nil? or @accounting_period.total_funds_at_bom <= 0.00
        
 
     else

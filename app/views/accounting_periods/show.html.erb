@@ -27,7 +27,8 @@
     <li><%= link_to "Bank Penalties", account_accounting_period_bank_penalties_path(@account, @accounting_period) %></li>
     <li><%= link_to "Bank Fees", account_accounting_period_bank_fees_path(@account, @accounting_period) %></li>
     <li><%= link_to "Bank Other Transactions", account_accounting_period_bank_other_transactions_path(@account, @accounting_period) %></li>
-    <li><a href="#tabs-2">Summary</a></li>
+    <li><%= link_to "Summary", [:summary, @account, @accounting_period] %></li>
+    <li><%= link_to "Period Computations", [:period_computations, @account, @accounting_period] %></li>
   </ul>
   <div id="tab-accounting-period-detail">
    
@@ -117,9 +118,6 @@
 
 
 
-  </div>
-  <div id="tabs-2">
-    <p>sample only here</p>
   </div>
   
 </div>

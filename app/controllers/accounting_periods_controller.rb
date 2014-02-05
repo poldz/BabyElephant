@@ -9,7 +9,20 @@ class AccountingPeriodsController < ApplicationController
     send_file rep
   end
 
+
   def summary
+    @accounting_period = @account.accounting_periods.find(params[:id])
+
+    respond_to do |format|
+      format.html { render layout: false }
+      format.json { render json: @accounting_period }
+    end
+
+  end
+
+
+
+  def period_computations
     @accounting_period = @account.accounting_periods.find(params[:id])
 
     respond_to do |format|
