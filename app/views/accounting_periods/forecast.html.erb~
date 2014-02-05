@@ -1,5 +1,5 @@
 
-  <h2 style="font-size:14px; font-weight: bold;"> Forecast for ( <%= @accounting_period.date.strftime("%b %Y") if @accounting_period.date %> )</h2>
+  <h2 style="font-size:14px; font-weight: bold;"> Summary ( <%= @accounting_period.date.strftime("%b %Y") if @accounting_period.date %> )</h2>
 
   <p>
     <h3>Remittance for Society:</h3>
