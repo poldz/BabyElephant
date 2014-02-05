@@ -27,8 +27,8 @@ module ApplicationHelper
     lst = [['Checking Account', 'Checking Account'], ['Other Account', 'Other Account']]
 
     if @accounting_period && (!@accounting_period.checking_account_rename.blank? || !@accounting_period.other_account_name.blank?)
-       lst[0][0] = @accounting_period.checking_account_rename if @accounting_period.checking_account_rename
-       lst[1][0] = @accounting_period.other_account_name if @accounting_period.other_account_name
+       lst[0][0] = @accounting_period.checking_account_rename unless @accounting_period.checking_account_rename.blank?
+       lst[1][0] = @accounting_period.other_account_name unless @accounting_period.other_account_name.blank?
     end
 
     return lst
@@ -40,8 +40,8 @@ module ApplicationHelper
 
 
     if @accounting_period && (!@accounting_period.checking_account_rename.blank? || !@accounting_period.other_account_name.blank?)
-       lst[1][0] = @accounting_period.checking_account_rename if @accounting_period.checking_account_rename
-       lst[2][0] = @accounting_period.other_account_name if @accounting_period.other_account_name
+       lst[1][0] = @accounting_period.checking_account_rename unless @accounting_period.checking_account_rename.blank?
+       lst[2][0] = @accounting_period.other_account_name unless @accounting_period.other_account_name.blank?
     end
 
     return lst
