@@ -12,9 +12,9 @@
     <h3>Remittance for Society Forecast:</h3>
  
     <p>
-      <strong>Society's Account Name:</strong> <%= @account.society_bank_account_name %>
+      <b>Society's Account Name:</b> <%= @account.society_bank_account_name %>
       <br/>
-      <strong>Society's Account Number:</strong> <%= @account.society_bank_account_number %>
+      <b>Society's Account Number:</b> <%= @account.society_bank_account_number %>
     </p>
     <p>
       
