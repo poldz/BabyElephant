@@ -38,7 +38,7 @@ gem 'best_in_place'
 
 gem 'ui_datepicker-rails3'
 
-#gem "linguistics", "~> 2.0.3"
+gem "linguistics", "~> 2.0.3"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

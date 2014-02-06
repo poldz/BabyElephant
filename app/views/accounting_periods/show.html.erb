@@ -1,7 +1,7 @@
 <div class="post">
 
 
-<p class="meta">Accounting Period for Account# <%= @account.account_number %>: <%= @account.account_name %></p>
+<p class="meta">Accounting Period for Account# <%= link_to @account.account_number, @account %>: <%= link_to @account.account_name, @account %></p>
 <h2 class="title">Accounting Period</h2>
 <div class="entry">
 

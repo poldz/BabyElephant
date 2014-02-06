@@ -93,6 +93,17 @@
 </p>
 
 
+
+<p>
+  <b>tmp 1 (KHOC Bank Account Name):</b>
+  <%= @account.tmp_1 %>
+</p>
+<p>
+  <b>tmp 2 (KHOC Bank Account Number):</b>
+  <%= @account.tmp_2 %>
+</p>
+
+
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %> |
 <%= link_to 'Accounting Periods', account_accounting_periods_path(@account) %>

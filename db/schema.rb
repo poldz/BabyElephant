@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140205075032) do
+ActiveRecord::Schema.define(:version => 20140206023601) do
 
   create_table "accounting_periods", :force => true do |t|
     t.integer  "user_id"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20140205075032) do
     t.string   "checking_account_bank_account_number"
     t.string   "other_account_name_on_bank_account"
     t.string   "other_account_bank_account_number"
+    t.string   "tmp_1"
+    t.string   "tmp_2"
   end
 
   add_index "accounts", ["user_id"], :name => "index_accounts_on_user_id"

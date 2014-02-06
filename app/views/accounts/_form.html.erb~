@@ -34,8 +34,9 @@
   <%= f.input :society_bank_account_name %>
   <%= f.input :society_bank_account_number %>
 
+  <%= f.input :tmp_1, :label => 'tmp_1 (KHOC Bank Account Name)' %>
+  <%= f.input :tmp_2, :label => 'tmp_2 (KHOC Bank Account Number)' %>
 
-, , , 
 
   <%= f.button :submit %>
 <% end %>

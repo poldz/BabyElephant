@@ -3,8 +3,118 @@
 
 
 
+
+
+
+
+
   <p>
-    <h3>Congregation Bank Account Info:</h3>
+    <h3>Remittance for Society Forecast:</h3>
+ 
+    <p>
+      <strong>Society's Account Name:</strong> <%= @account.society_bank_account_name %>
+      <br/>
+      <strong>Society's Account Number:</strong> <%= @account.society_bank_account_number %>
+    </p>
+    <p>
+      
+        <table class="gridtable" style="text-align: right; margin-left: 40px;" >
+      
+          <tbody class="act_summary_details">
+            <tr>
+              <td title="Total Contributions - Worldwide Work"><strong>Total Contributions for Worldwide Work:</strong></td>      
+              <td><%= number_with_precision(@accounting_period.current_total_worldwide_work, precision: 2) %></td>
+            </tr>
+
+            <tr>
+              <td title="Total Contributions - Kingdom Hall Construction Worldwide"><strong>Total Contributions for Kingdom Hall Construction Worldwide:</strong></td>      
+              <td><%= number_with_precision(@accounting_period.current_total_kingdom_hall_construction_worldwide, precision: 2) %></td>
+            </tr>
+
+
+            <tr>
+              <td title="KHLR - Kingdom Hall Loans Repayment"><strong>KHLR - Kingdom Hall Loans Repayment:</strong></td>      
+              <td><%= number_with_precision(5000, precision: 2) %></td>
+            </tr>
+
+            <tr>
+              <td colspan=2></td>
+            </tr>
+
+            <% 
+               total_for_society = 0.0
+               total_for_society += @accounting_period.current_total_worldwide_work
+               total_for_society += @accounting_period.current_total_kingdom_hall_construction_worldwide
+               total_for_society += 5000 #KHLR
+            %>
+
+            <tr>
+              <td title="Total Contributions"><strong>Total Contributions for Society:</strong></td>      
+              <td><strong><%= number_with_precision(total_for_society, precision: 2) %></strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+    </p>
+
+  </p>
+
+
+
+
+
+
+
+
+
+  <p>
+    <h3>KHOC Maintenace:</h3>
+ 
+    <p>
+      <strong>KHOC Account Name:</strong> <%= @account.tmp_1 %>
+      <br/>
+      <strong>KHOC Account Number:</strong> <%= @account.tmp_2 %>
+    </p>
+    <p>
+      
+        <table class="gridtable" style="text-align: right; margin-left: 40px;">
+      
+          <tbody class="act_summary_details">
+
+            <tr>
+              <td title="KHOC Maintenance"><strong>KHOC Maintenance:</strong></td>      
+              <td><strong><%= number_with_precision(2000, precision: 2) %></strong></td>
+            </tr>
+
+            <tr>
+              <td colspan=2></td>
+            </tr>
+
+           
+
+            <tr>
+              <td title="Total Contributions"><strong>Total:</strong></td>      
+              <td><strong><%= number_with_precision(2000, precision: 2) %></strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+    </p>
+
+  </p>
+
+
+
+
+
+
+  <p>
+    <h3>Witdrawal Details:</h3>
+ 
+
+
+  <p>
+    <h4>Congregation Bank Account Info:</h4>
  
 
     <p>
@@ -22,40 +132,27 @@
 
   </p>
 
-
-
-
-
-  <p>
-    <h3>Remittance for Society Forecast:</h3>
- 
-    <p>
-      <strong>Society's Account Name:</strong> <%= @account.society_bank_account_name %>
-      <br/>
-      <strong>Society's Account Number:</strong> <%= @account.society_bank_account_number %>
-    </p>
     <p>
       
         <table class="gridtable" style="text-align: right; margin-left: 40px;">
       
           <tbody class="act_summary_details">
-            <tr>
-              <td title="Total Contributions - Worldwide Work"><strong>Total Contributions for Worldwide Work:</strong></td>      
-              <td><%= number_with_precision(@accounting_period.current_total_worldwide_work, precision: 2) %></td>
-            </tr>
+
+            <%
+               total_withdrawal = 0.00
+               total_withdrawal += total_for_society
+               total_withdrawal += 2000
+             %>
+
+           
 
             <tr>
-              <td title="Total Contributions - Kingdom Hall Construction Worldwide"><strong>Total Contributions for Kingdom Hall Construction Worldwide:</strong></td>      
-              <td><%= number_with_precision(@accounting_period.current_total_kingdom_hall_construction_worldwide, precision: 2) %></td>
+              <td title="Total Amount to Withdraw"><strong>Total Amount to Withdraw:</strong></td>      
+              <td><strong><%= number_with_precision(total_withdrawal, precision: 2) %></strong></td>
             </tr>
-
             <tr>
-              <td colspan=2></td>
-            </tr>
-
-            <tr>
-              <td title="Total Contributions"><strong>Total Contributions for Society:</strong></td>      
-              <td><%= number_with_precision(@accounting_period.remittances.sum(:amount), precision: 2) %></td>
+              <td title="Amount in Words"><strong>Amount in Words:</strong></td>      
+              <td><strong><%= number_with_precision(total_withdrawal, precision: 2) %></strong></td>
             </tr>
           </tbody>
         </table>
@@ -63,6 +160,9 @@
     </p>
 
   </p>
+
+
+
 
 
 
