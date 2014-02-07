@@ -17,11 +17,11 @@
 
 <% @expenses.each do |expense| %>
   <tr>
-    <td><%= expense.date %></td>
+    <td><%= best_in_place [@account, @accounting_period, expense], :date, type: :date, :display_with => lambda { |v| date_format(v) } %></td>
     <td><%= expense.source_of_fund %></td>
     <td><%= expense.is_from_bank_withdrawal? ? expense.bank_withdrawal.display_name : 'N/A' %></td>
     <td><%= expense.description %></td>
-    <td><%= expense.amount %></td>
+    <td><%= best_in_place [@account, @accounting_period, expense], :amount, type: :input, nil: '--', :display_with => lambda { |v| money_format(v) } %></td>
     <td><%= expense.notes %></td>
     <td><%= link_to 'Show', [@account, @accounting_period, expense], :data => { :colorbox => true} %></td>
     <td><%= link_to 'Edit', edit_account_accounting_period_expense_path(@account, @accounting_period, expense), :data => { :colorbox => true} %></td>

@@ -17,12 +17,12 @@
 
 <% @remittances.each do |remittance| %>
   <tr>
-    <td><%= remittance.date %></td>
+    <td><%= best_in_place [@account, @accounting_period, receipt], :date, type: :date, :display_with => lambda { |v| date_format(v) } %></td>
     <td><%= remittance.source_of_fund %></td>
     <td><%= remittance.is_from_bank_withdrawal? ? remittance.bank_withdrawal.display_name : 'N/A' %></td>
     <td><%= remittance.remittance_type %></td>
     <td><%= remittance.description %></td>
-    <td><%= remittance.amount %></td>
+    <td><%= best_in_place [@account, @accounting_period, remittance], :amount, type: :input, nil: '--', :display_with => lambda { |v| money_format(v) } %></td>
     <td><%= remittance.notes %></td>
     <td><%= link_to 'Show', [@account, @accounting_period, remittance], :data => { :colorbox => true} %></td>
     <td><%= link_to 'Edit', edit_account_accounting_period_remittance_path(@account, @accounting_period, remittance), :data => { :colorbox => true} %></td>
@@ -30,3 +30,17 @@
   </tr>
 <% end %>
 </table>
+
+
+
+
+
+<script type="text/javascript">
+  $(function() {
+    $('.best_in_place').bind("ajax:success", function(){
+      $.get('<%= summary_account_accounting_period_path(@accounting_period.account, @accounting_period) -%>', function(data) {
+        $('#accounting_period_summary').html(data);
+      });
+    })
+  });
+</script>
