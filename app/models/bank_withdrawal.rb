@@ -17,7 +17,7 @@ class BankWithdrawal < ActiveRecord::Base
   validates :bank_account, :presence => true
 
   def display_name
-    "[#{date}] #{bank_account} (#{amount})"
+    "[#{date}] #{bank_account_display(bank_account)} (#{money_format(amount)})"
   end
 
   def is_deposited?
@@ -49,6 +49,28 @@ class BankWithdrawal < ActiveRecord::Base
   end
 
   private
+
+
+
+  def bank_account_display(val)
+
+    if accounting_period && (!accounting_period.checking_account_rename.blank? || !accounting_period.other_account_name.blank?)
+       return accounting_period.checking_account_rename if !accounting_period.checking_account_rename.blank? && val == 'Checking Account'
+       return accounting_period.other_account_name if !accounting_period.other_account_name.blank? && val == 'Other Bank Account'
+       return accounting_period.other_account_name if !accounting_period.other_account_name.blank? && val == 'Other Account'
+    end
+
+    return val
+
+  end
+
+
+  def money_format(a)
+    return "0.00" if a.nil?
+    return ("%.2f" % a)
+  end
+
+
 
   def is_same_day?(d)
      return false unless d
