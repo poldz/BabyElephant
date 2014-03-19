@@ -12,9 +12,9 @@
     <h3>Remittance for Society Forecast:</h3>
  
     <p>
-      <b>Society's Account Name:</b> <%= @account.society_bank_account_name %>
+      <strong>Society's Account Name:</strong> <%= @account.society_bank_account_name %>
       <br/>
-      <b>Society's Account Number:</b> <%= @account.society_bank_account_number %>
+      <strong>Society's Account Number:</strong> <%= @account.society_bank_account_number %>
     </p>
     <p>
       
@@ -142,6 +142,8 @@
                total_withdrawal = 0.00
                total_withdrawal += total_for_society
                total_withdrawal += 2000
+
+               total_withdrawal += 32100120.32
              %>
 
            
@@ -152,7 +154,7 @@
             </tr>
             <tr>
               <td title="Amount in Words"><strong>Amount in Words:</strong></td>      
-              <td><strong><%= number_with_precision(total_withdrawal, precision: 2) %></strong></td>
+              <td><strong><%= number_to_words(total_withdrawal) %></strong></td>
             </tr>
           </tbody>
         </table>

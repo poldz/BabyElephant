@@ -152,7 +152,7 @@
             </tr>
             <tr>
               <td title="Amount in Words"><strong>Amount in Words:</strong></td>      
-              <td><strong><%= number_with_precision(total_withdrawal, precision: 2) %></strong></td>
+              <td><strong><%= number_to_words(total_withdrawal) %></strong></td>
             </tr>
           </tbody>
         </table>
