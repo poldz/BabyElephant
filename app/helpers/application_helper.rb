@@ -92,7 +92,8 @@ module ApplicationHelper
   end
 
   def contributions_for_list
-    [['Worldwide Work', 'Worldwide Work'], ['Kingdom Hall Construction Worldwide', 'Kingdom Hall Construction Worldwide'], ['Local Congregation Expenses', 'Local Congregation Expenses']]
+    #[['Worldwide Work', 'Worldwide Work'], ['Kingdom Hall Construction Worldwide', 'Kingdom Hall Construction Worldwide'], ['Local Congregation Expenses', 'Local Congregation Expenses']]
+    [['Worldwide Work', 'Worldwide Work'], ['Local Congregation Expenses', 'Local Congregation Expenses']]
   end
 
   def bank_accounts_list

@@ -60,11 +60,11 @@ module ApplicationHelper
     fraction_part = str_amount.split('.')[1]
     fraction_part_str = ""
     if fraction_part.to_i > 0
-       fraction_part_str = " and #{NUMBER_WORDS_HASH[fraction_part.to_i]} centavos"
+       fraction_part_str = " and #{NUMBER_WORDS_HASH[fraction_part.to_i]} Centavos"
     end
 
     
-    return "#{whole_part_str} pesos #{fraction_part_str}".split(/\s+/).join(' ')
+    return "#{whole_part_str} Pesos #{fraction_part_str}".split(/\s+/).join(' ')
 
   end
 
