@@ -4,14 +4,22 @@
   <tr>    
     <th>Date</th>
     <th>Worldwide work</th>
-    <th>Kingdom hall construction worldwide</th>
+    <!--th>Kingdom hall construction worldwide</th -->
     <th>Local congregation expenses</th>
-    <th>Other 1</th>
-    <th>Other 1 amount</th>
-    <th>Other 1 for</th>
-    <th>Other 2</th>
-    <th>Other 2 amount</th>
-    <th>Other 2 for</th>
+
+    <% if @receipts.select{|r| r.other_1.present? }.present? %>
+      <th>Other 1</th>
+      <th>Other 1 amount</th>
+      <th>Other 1 for</th>
+    <% end %>
+
+    <% if @receipts.select{|r| r.other_2.present? }.present? %>
+      <th>Other 2</th>
+      <th>Other 2 amount</th>
+      <th>Other 2 for</th>
+    <% end %>
+
+
     <th>Total</th>
     <th></th>
     <th></th>
@@ -23,16 +31,23 @@
     
     <td><%= best_in_place [@account, @accounting_period, receipt], :date, type: :date, :display_with => lambda { |v| date_format(v) } %></td>
     <td class="right"><%= best_in_place [@account, @accounting_period, receipt], :worldwide_work, type: :input, nil: '--', :display_with => lambda { |v| money_format(v) } %></td>
-    <td class="right"><%= best_in_place [@account, @accounting_period, receipt], :kingdom_hall_construction_worldwide, nil: '--', :display_with => lambda { |v| money_format(v) } %></td>
+    <!-- td class="right"><%#= best_in_place [@account, @accounting_period, receipt], :kingdom_hall_construction_worldwide, nil: '--', :display_with => lambda { |v| money_format(v) } %></td -->
     <td class="right"><%= best_in_place [@account, @accounting_period, receipt], :local_congregation_expenses, nil: '--', :display_with => lambda { |v| money_format(v) } %></td>
-    <td><%= best_in_place [@account, @accounting_period, receipt], :other_1, :type => :input, :nil => "--" %></td>
-    <td class="right"><%= best_in_place [@account, @accounting_period, receipt], :other_1_amount, :nil => '--', :display_with => lambda { |v| money_format(v) } %></td>
-    <td><%= best_in_place [@account, @accounting_period, receipt], :other_1_for, type: :select, collection: contributions_for_list, nil: '--'  %></td>
+
+    <% if @receipts.select{|r| r.other_1.present? }.present? %>
+      <td><%= best_in_place [@account, @accounting_period, receipt], :other_1, :type => :input, :nil => "--" %></td>
+      <td class="right"><%= best_in_place [@account, @accounting_period, receipt], :other_1_amount, :nil => '--', :display_with => lambda { |v| money_format(v) } %></td>
+      <td><%= best_in_place [@account, @accounting_period, receipt], :other_1_for, type: :select, collection: contributions_for_list, nil: '--'  %></td>
+    <% end %>
     
-    <td><%= best_in_place [@account, @accounting_period, receipt], :other_2, :type => :input, :nil => "--" %></td>
-    <td class="right"><%= best_in_place [@account, @accounting_period, receipt], :other_2_amount, :nil => '--', :display_with => lambda { |v| money_format(v) } %></td>
-    <td><%= best_in_place [@account, @accounting_period, receipt], :other_2_for, type: :select, collection: contributions_for_list, nil: '--'  %></td>
-    <td><%= receipt.total %></td>
+    <% if @receipts.select{|r| r.other_2.present? }.present? %>
+      <td><%= best_in_place [@account, @accounting_period, receipt], :other_2, :type => :input, :nil => "--" %></td>
+      <td class="right"><%= best_in_place [@account, @accounting_period, receipt], :other_2_amount, :nil => '--', :display_with => lambda { |v| money_format(v) } %></td>
+      <td><%= best_in_place [@account, @accounting_period, receipt], :other_2_for, type: :select, collection: contributions_for_list, nil: '--'  %></td>
+    <% end %>
+
+
+    <td class="right"><%= money_format(receipt.total) %></td>
     <td><%= link_to 'Show', [receipt.accounting_period.account, receipt.accounting_period, receipt], :data => { :colorbox => true} %></td>
     <td><%= link_to 'Edit', edit_account_accounting_period_receipt_path(receipt.accounting_period.account, receipt.accounting_period, receipt), :data => { :colorbox => true } %></td>
     <td><%= link_to 'Destroy', [receipt.accounting_period.account, receipt.accounting_period, receipt], method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
