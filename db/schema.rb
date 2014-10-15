@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140206023601) do
+ActiveRecord::Schema.define(:version => 20141015030347) do
 
   create_table "accounting_periods", :force => true do |t|
     t.integer  "user_id"
@@ -74,9 +74,9 @@ ActiveRecord::Schema.define(:version => 20140206023601) do
     t.date     "date"
     t.string   "bank_account"
     t.decimal  "amount",               :precision => 12, :scale => 2, :default => 0.0
-    t.datetime "created_at",                                                           :null => false
-    t.datetime "updated_at",                                                           :null => false
-    t.string   "source_of_fund"
+    t.datetime "created_at",                                                                      :null => false
+    t.datetime "updated_at",                                                                      :null => false
+    t.string   "source_of_fund",                                      :default => "Cash on Hand"
     t.integer  "bank_withdrawal_id"
     t.string   "note"
   end
@@ -308,5 +308,9 @@ ActiveRecord::Schema.define(:version => 20140206023601) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+
+  create_table "zichri", :id => false, :force => true do |t|
+    t.integer "id"
+  end
 
 end
