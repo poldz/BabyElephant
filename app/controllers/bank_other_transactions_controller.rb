@@ -102,7 +102,10 @@ class BankOtherTransactionsController < ApplicationController
     params.require(:bank_other_transaction).permit(
         :date,
         :bank_account,
-        :amount
+        :description,
+        :notes,
+        :amount,
+        :transaction_type
     )
   end
 
