@@ -48,7 +48,7 @@ class BankDepositsController < ApplicationController
   # POST /bank_deposits
   # POST /bank_deposits.json
   def create
-    @bank_deposit = @accounting_period.bank_deposits.build(params[:bank_deposit])
+    @bank_deposit = @accounting_period.bank_deposits.build(bank_deposit_params)
 
     respond_to do |format|
       if @bank_deposit.save
@@ -69,7 +69,7 @@ class BankDepositsController < ApplicationController
     @bank_deposit = @accounting_period.bank_deposits.find(params[:id])
 
     respond_to do |format|
-      if @bank_deposit.update_attributes(params[:bank_deposit])
+      if @bank_deposit.update_attributes(bank_deposit_params)
         format.html { redirect_to [@account, @accounting_period, @bank_deposit], notice: 'Bank deposit was successfully updated.' }
         format.json { render json: @bank_deposit, status: :ok }
         format.js { @bank_deposits = @accounting_period.bank_deposits; render 'update_list' }
@@ -92,5 +92,21 @@ class BankDepositsController < ApplicationController
       format.json { head :no_content }
       format.js { @bank_deposits = @accounting_period.bank_deposits; render 'update_list' }
     end
+  end
+
+
+  private
+
+  def bank_deposit_params
+
+    params.require(:bank_deposit).permit(
+        :date,
+        :bank_account,
+        :amount,
+        :source_of_fund,
+        :bank_withdrawal_id,
+        :note
+    )
+
   end
 end

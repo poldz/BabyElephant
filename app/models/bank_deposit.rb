@@ -51,5 +51,4 @@ class BankDeposit < ActiveRecord::Base
     #end
   end
 
-
 end

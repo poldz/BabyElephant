@@ -57,36 +57,34 @@
 <li>
 	<h2 style="font-size:14px; font-weight: bold;"> <%= link_to 'Accounts', accounts_path, style: "color: #ffffff;" %></h2>
 	<div id="accounts_side_list_accordion" style="margin-left: 10px;">
-          <% current_user.accounts.each do |act| %>
+          <% current_user.accounts.select{|a| !a.new_record? }.each do |act| %>
             <h3  id="accounts_side_list_accordion__<%= act.id%>" style="font-size:10px; font-weight: bold;"><%= link_to "Act Num: #{act.account_number}, Name: #{act.account_name}", act %></h3>          
             <div >
-          
-
-<strong style="font-size:12px; text-align: left;">Accounting Periods:</strong>
 
 
-<table class="gridtable">
-  <tr>
-    <th>ID</th>
-    <th>Period Date</th>
-  </tr>
-
-<% act.accounting_periods.order('date desc').limit(12).each do |accounting_period| %>
-  <tr>
-    <td><%= link_to accounting_period.id, [accounting_period.account, accounting_period]  %></td>
-    <td><%= link_to accounting_period.date.strftime("%b %Y"), [accounting_period.account, accounting_period]  if accounting_period.date %></td>
-  </tr>
-<% end %>
-</table>
-
-<ul>
-<li><%= link_to 'More ...', account_accounting_periods_path(act), style: "font-size: 10px;" %></li>
-
-<li><%= link_to 'New Accounting period', new_account_accounting_period_path(act), style: "font-size: 10px;" %></li>
-
-</ul>
+                <strong style="font-size:12px; text-align: left;">Accounting Periods:</strong>
 
 
+                <table class="gridtable">
+                  <tr>
+                    <th>ID</th>
+                    <th>Period Date</th>
+                  </tr>
+
+                <% act.accounting_periods.order('date desc').limit(12).each do |accounting_period| %>
+                  <tr>
+                    <td><%= link_to accounting_period.id, [accounting_period.account, accounting_period]  %></td>
+                    <td><%= link_to accounting_period.date.strftime("%b %Y"), [accounting_period.account, accounting_period]  if accounting_period.date %></td>
+                  </tr>
+                <% end %>
+                </table>
+
+                <ul>
+                <li><%= link_to 'More ...', account_accounting_periods_path(act), style: "font-size: 10px;" %></li>
+
+                <li><%= link_to 'New Accounting period', new_account_accounting_period_path(act), style: "font-size: 10px;" %></li>
+
+                </ul>
     
             </div>
           <% end %>
@@ -95,6 +93,9 @@
  
 </div>
 </li>
+
+
+
 
 
 
