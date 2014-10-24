@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1645711404">
+    <data-source source="LOCAL" name="Rails BabyElephant: development" uuid="7c4616d7-8a0a-4107-b34b-f1200fac1cd2">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1/congregation_accounting_dev</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfd8dfc5dfc4dfcbdfc6dfd3</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails BabyElephant: test" uuid="f6164b07-d732-4ce4-a30b-285a1554479c">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1/congregation_accounting_test</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfd8dfc5dfc4dfcbdfc6dfd3</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails BabyElephant: production" uuid="63bc2aa5-25da-4be3-9b98-946b9ccb0df7">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1/congregation_accounting_prod</jdbc-url>
+      <user-name>root</user-name>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

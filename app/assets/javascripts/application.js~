@@ -19,6 +19,7 @@
 //= require jquery.purr
 //= require best_in_place
 //= require best_in_place.purr
+//= require best_in_place.purr
 
 
 
@@ -27,10 +28,7 @@
 $(function() {
   $('.best_in_place').best_in_place();  
 
-  var datepicker_widgets = $('input.ui-date-picker');
-
-  datepicker_widgets.datepicker( 'option', 'showWeek', true);
-  datepicker_widgets.datepicker( 'option', 'changeMonth', true );
+  
 
 
 });
