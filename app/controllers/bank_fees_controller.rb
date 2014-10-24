@@ -48,7 +48,7 @@ class BankFeesController < ApplicationController
   # POST /bank_fees
   # POST /bank_fees.json
   def create
-    @bank_fee = @accounting_period.bank_fees.build(params[:bank_fee])
+    @bank_fee = @accounting_period.bank_fees.build(bank_fee_params)
 
     respond_to do |format|
       if @bank_fee.save
@@ -69,7 +69,7 @@ class BankFeesController < ApplicationController
     @bank_fee = @accounting_period.bank_fees.find(params[:id])
 
     respond_to do |format|
-      if @bank_fee.update_attributes(params[:bank_fee])
+      if @bank_fee.update_attributes(bank_fee_params)
         format.html { redirect_to [@account, @accounting_period, @bank_fee], notice: 'Bank fee was successfully updated.' }
         format.json { render json: @bank_fee, status: :ok }
         format.js { @bank_fees = @accounting_period.bank_fees; render 'update_list' }
@@ -93,4 +93,18 @@ class BankFeesController < ApplicationController
       format.js { @bank_fees = @accounting_period.bank_fees; render 'update_list' }
     end
   end
+
+  private
+
+  def bank_fee_params
+
+    params.require(:bank_fee).permit(
+        :date,
+        :bank_account,
+        :description,
+        :notes,
+        :amount
+    )
+  end
+
 end
