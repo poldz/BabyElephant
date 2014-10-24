@@ -150,7 +150,7 @@ class AccountSheetBackPage < AccountSheetPageBase
   
   def template_file
     #"#{Rails.root}/app/assets/pdf/AccountSheetBack.pdf"
-    File.join(Rails.root, 'app', 'assets', 'pdf', 'AccountSheetBack.pdf')
+    raise File.join(Rails.root, 'app', 'assets', 'pdf', 'AccountSheetBack.pdf')
   end
 
 
@@ -166,7 +166,6 @@ class AccountSheetBackPage < AccountSheetPageBase
   def render_account_sheet_detail!(pdf_obj, line, sheet_item)
 
     if sheet_item.is_note?
-      
       if sheet_item.note_amount.nil?
         text_box(pdf_obj, 30, (SHEET_START_TOP + (line * 11.3)), "#{sheet_item.note}", :size => 6)
       else
