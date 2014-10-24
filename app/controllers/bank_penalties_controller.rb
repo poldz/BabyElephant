@@ -47,7 +47,7 @@ class BankPenaltiesController < ApplicationController
   # POST /bank_penalties
   # POST /bank_penalties.json
   def create
-    @bank_penalty = @accounting_period.bank_penalties.build(params[:bank_penalty])
+    @bank_penalty = @accounting_period.bank_penalties.build(bank_penalty_params)
 
     respond_to do |format|
       if @bank_penalty.save
@@ -68,7 +68,7 @@ class BankPenaltiesController < ApplicationController
     @bank_penalty = @accounting_period.bank_penalties.find(params[:id])
 
     respond_to do |format|
-      if @bank_penalty.update_attributes(params[:bank_penalty])
+      if @bank_penalty.update_attributes(bank_penalty_params)
         format.html { redirect_to [@account, @accounting_period, @bank_penalty], notice: 'Bank penalty was successfully updated.' }
         format.json { render json: @bank_penalty, status: :ok }
         format.js { @bank_penalties = @accounting_period.bank_penalties; render 'update_list' }
@@ -91,5 +91,20 @@ class BankPenaltiesController < ApplicationController
       format.json { head :no_content }
       format.js { @bank_penalties = @accounting_period.bank_penalties; render 'update_list' }
     end
+  end
+
+
+
+  private
+
+  def bank_penalty_params
+
+    params.require(:bank_penalty).permit(
+        :date,
+        :bank_account,
+        :description,
+        :notes,
+        :amount
+    )
   end
 end
