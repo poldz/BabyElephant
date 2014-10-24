@@ -4,9 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
   root :to => "home#index"
 
-
-
-
   resources :accounts do
     resources :accounting_periods do
 
@@ -33,11 +30,7 @@ Rails.application.routes.draw do
       resources :remittances
       resources :expenses
 
-
     end
   end
-
-
-
 
 end
