@@ -53,6 +53,10 @@ gem 'web-app-theme'
 
 gem 'ui_datepicker-rails3'
 
+gem "best_in_place"
+
+
+
 
 
 

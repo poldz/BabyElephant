@@ -17,13 +17,15 @@
 //= require_tree .
 //= require flexigrid
 
+//= require best_in_place
+//= require best_in_place.jquery-ui
 
 
+$(function() {
+  $('.best_in_place').best_in_place();
+});
 
 
-//$(function() {
-//  $('.best_in_place').best_in_place();
-//});
 
 
 

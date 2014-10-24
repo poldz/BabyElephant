@@ -14,7 +14,9 @@
   <% end %>
 
   <div class="form-inputs">
-    <%= f.input :date, :as => :ui_date_picker %>
+    <%#= f.input :date, :as => :ui_date_picker %>
+    <%= f.input :date, as: :string, input_html: { class: "ui-date-picker" } %>
+    <%#= f.input :date, as: :string, data: {provide: 'datepicker'}%>
     <%= f.input :worldwide_work %>
     <%#= f.input :kingdom_hall_construction_worldwide %>
     <%= f.input :local_congregation_expenses %>
