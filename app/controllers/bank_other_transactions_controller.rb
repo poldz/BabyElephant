@@ -47,7 +47,7 @@ class BankOtherTransactionsController < ApplicationController
   # POST /bank_other_transactions
   # POST /bank_other_transactions.json
   def create
-    @bank_other_transaction = @accounting_period.bank_other_transactions.build(params[:bank_other_transaction])
+    @bank_other_transaction = @accounting_period.bank_other_transactions.build(bank_other_transaction_params)
 
     respond_to do |format|
       if @bank_other_transaction.save
@@ -68,7 +68,7 @@ class BankOtherTransactionsController < ApplicationController
     @bank_other_transaction = @accounting_period.bank_other_transactions.find(params[:id])
 
     respond_to do |format|
-      if @bank_other_transaction.update_attributes(params[:bank_other_transaction])
+      if @bank_other_transaction.update_attributes(bank_other_transaction_params)
         format.html { redirect_to [@account, @accounting_period, @bank_other_transaction], notice: 'Bank other transaction was successfully updated.' }
         format.json { render json: @bank_other_transaction, status: :ok }
         format.js { @bank_other_transactions = @accounting_period.bank_other_transactions; render 'update_list' }
@@ -92,4 +92,18 @@ class BankOtherTransactionsController < ApplicationController
       format.js { @bank_other_transactions = @accounting_period.bank_other_transactions; render 'update_list' }
     end
   end
+
+
+
+  private
+
+  def bank_other_transaction_params
+
+    params.require(:bank_other_transaction).permit(
+        :date,
+        :bank_account,
+        :amount
+    )
+  end
+
 end

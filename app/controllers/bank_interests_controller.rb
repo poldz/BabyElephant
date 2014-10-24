@@ -94,6 +94,7 @@ class BankInterestsController < ApplicationController
   end
 
 
+  private
 
   def bank_interest_params
 
