@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def set_accounting_period
     set_account unless @account
-    @accounting_period = @account.accounting_periods.find(params[:account_id])
+    @accounting_period = @account.accounting_periods.find(params[:accounting_period_id])
   end
 
   def set_bank_withdrawal_if_applicable
