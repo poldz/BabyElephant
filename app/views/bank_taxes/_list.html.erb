@@ -17,9 +17,9 @@
     <td><%= bank_tax.date %></td>
     <td><%= bank_tax.bank_account %></td>
     <td><%= bank_tax.amount %></td>
-    <td><%= link_to 'Show', account_accounting_period_bank_taxis_path(@account, @accounting_period, bank_tax), :data => { :colorbox => true} %></td>
-    <td><%= link_to 'Edit', edit_account_accounting_period_bank_taxis_path(@account, @accounting_period, bank_tax), :data => { :colorbox => true} %></td>
-    <td><%= link_to 'Destroy', account_accounting_period_bank_taxis_path(@account, @accounting_period, bank_tax), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+    <td><%= link_to 'Show', account_accounting_period_bank_taxes_path(@account, @accounting_period, bank_tax), :data => { :colorbox => true} %></td>
+    <td><%= link_to 'Edit', edit_account_accounting_period_bank_tax_path(@account, @accounting_period, bank_tax), :data => { :colorbox => true} %></td>
+    <td><%= link_to 'Destroy', account_accounting_period_bank_taxes_path(@account, @accounting_period, bank_tax), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
   </tr>
 <% end %>
 </table>
