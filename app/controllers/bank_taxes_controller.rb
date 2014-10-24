@@ -48,7 +48,7 @@ class BankTaxesController < ApplicationController
   # POST /bank_taxes
   # POST /bank_taxes.json
   def create
-    @bank_tax = @accounting_period.bank_taxes.build(params[:bank_tax])
+    @bank_tax = @accounting_period.bank_taxes.build(bank_tax_params)
 
     respond_to do |format|
       if @bank_tax.save
@@ -69,7 +69,7 @@ class BankTaxesController < ApplicationController
     @bank_tax = @accounting_period.bank_taxes.find(params[:id])
 
     respond_to do |format|
-      if @bank_tax.update_attributes(params[:bank_tax])
+      if @bank_tax.update_attributes(bank_tax_params)
         format.html { redirect_to account_accounting_period_bank_taxis_path(@account, @accounting_period, @bank_tax), notice: 'Bank tax was successfully updated.' }
         format.json { render json: @bank_tax, status: :ok }
         format.js { @bank_taxes = @accounting_period.bank_taxes; render 'update_list' }
@@ -92,5 +92,17 @@ class BankTaxesController < ApplicationController
       format.json { head :no_content }
       format.js { @bank_taxes = @accounting_period.bank_taxes; render 'update_list' }
     end
+  end
+
+
+  private
+
+  def bank_tax_params
+
+    params.require(:bank_tax).permit(
+        :date,
+        :bank_account,
+        :amount
+    )
   end
 end
