@@ -2,7 +2,6 @@ class BankOtherTransaction < ActiveRecord::Base
   belongs_to :user
   belongs_to :account
   belongs_to :accounting_period
-  attr_accessible :amount, :bank_account, :created_by_id, :date, :transaction_type, :description, :notes
 
   before_validation :set_account_and_user
 

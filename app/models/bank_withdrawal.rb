@@ -8,9 +8,6 @@ class BankWithdrawal < ActiveRecord::Base
 
   has_many :bank_deposits
 
-
-  attr_accessible :amount, :bank_account, :created_by_id, :date, :note
-
   before_validation :set_account_and_user
 
   validates :amount, :presence => true, :numericality => {:greater_than => 0.00}

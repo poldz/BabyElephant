@@ -7,10 +7,7 @@ class Receipt < ActiveRecord::Base
   before_validation :set_account_and_user
   before_validation :set_total
 
-  attr_accessible :created_by_id, :date, :kingdom_hall_construction_worldwide, :local_congregation_expenses, 
-                  :other_1, :other_1_amount, :other_1_for, :other_2, :other_2_amount, :other_2_for, :total, :worldwide_work
-
-  validates :other_1_amount, :presence => true, :numericality => {:greater_than => 0.00,  :if => :other_1_for_required?}  
+  validates :other_1_amount, :presence => true, :numericality => {:greater_than => 0.00,  :if => :other_1_for_required?}
   validates :other_1_for, :presence => { :if => :other_1_for_required? }
 
   validates :other_2_amount, :presence => true, :numericality => {:greater_than => 0.00,  :if => :other_2_for_required?}

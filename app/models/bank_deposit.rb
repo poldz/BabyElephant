@@ -3,7 +3,6 @@ class BankDeposit < ActiveRecord::Base
   belongs_to :account
   belongs_to :accounting_period
   belongs_to :bank_withdrawal
-  attr_accessible :source_of_fund, :amount, :bank_account, :created_by_id, :date, :bank_withdrawal_id, :note
 
 
   before_validation :set_account_and_user

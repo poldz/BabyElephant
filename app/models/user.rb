@@ -11,11 +11,6 @@ class User < ActiveRecord::Base
          :confirmable,
          :lockable, :timeoutable
 
-  # Setup accessible (or protected) attributes for your model
-  #attr_accessible :email, :password, :password_confirmation, :remember_me
-  #attr_accessible :first_name, :last_name, :middle_name, :address
-  # attr_accessible :title, :body
-
 
   validates :first_name, :last_name, :middle_name, :address, :presence => true
   validates :email, :presence => true, :uniqueness => true
