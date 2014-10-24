@@ -41,8 +41,7 @@ gem 'spring',        group: :development
 
 gem 'jquery-ui-rails', '~> 5.0.2'
 gem 'colorbox-rails'
-gem 'prawn'
-gem 'execjs' 
+gem 'execjs'
 gem 'mysql2'
 gem 'devise'
 gem 'simple_form', github: 'plataformatec/simple_form'
@@ -58,6 +57,9 @@ gem "best_in_place"
 
 
 
+# this is for the pdf generator
+gem 'prawn', '0.12.0' # using old version because :template is no longer used by new version
+#gem 'prawn-templates' # template pdf, supposed tobe template fix for prawn, but its not working, so resorted to use the old version above
 
 
 
