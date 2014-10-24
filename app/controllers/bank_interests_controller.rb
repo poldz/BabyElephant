@@ -47,7 +47,7 @@ class BankInterestsController < ApplicationController
   # POST /bank_interests
   # POST /bank_interests.json
   def create
-    @bank_interest = @accounting_period.bank_interests.build(params[:bank_interest])
+    @bank_interest = @accounting_period.bank_interests.build(bank_interest_params)
 
     respond_to do |format|
       if @bank_interest.save
@@ -68,7 +68,7 @@ class BankInterestsController < ApplicationController
     @bank_interest = @accounting_period.bank_interests.find(params[:id])
 
     respond_to do |format|
-      if @bank_interest.update_attributes(params[:bank_interest])
+      if @bank_interest.update_attributes(bank_interest_params)
         format.html { redirect_to [@account, @accounting_period, @bank_interest], notice: 'Bank interest was successfully updated.' }
         format.json { render json: @bank_interest, status: :ok }
         format.js { @bank_interests = @accounting_period.bank_interests; render 'update_list' }
@@ -91,5 +91,16 @@ class BankInterestsController < ApplicationController
       format.json { head :no_content }     
       format.js { @bank_interests = @accounting_period.bank_interests; render 'update_list' }
     end
+  end
+
+
+
+  def bank_interest_params
+
+    params.require(:bank_interest).permit(
+        :date,
+        :bank_account,
+        :amount
+    )
   end
 end
