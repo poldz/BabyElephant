@@ -95,7 +95,7 @@ class AccountingPeriodsController < ApplicationController
   # POST /accounting_periods
   # POST /accounting_periods.json
   def create
-    @accounting_period = @account.accounting_periods.build(params[:accounting_period])
+    @accounting_period = @account.accounting_periods.build(accounting_period_params)
     @accounting_period.created_by_id = current_user.id
 
     respond_to do |format|
@@ -115,7 +115,7 @@ class AccountingPeriodsController < ApplicationController
     @accounting_period = @account.accounting_periods.find(params[:id])
 
     respond_to do |format|
-      if @accounting_period.update_attributes(params[:accounting_period])
+      if @accounting_period.update_attributes(accounting_period_params)
         format.html { redirect_to [@account, @accounting_period], notice: 'Accounting period was successfully updated.' }
         format.json { head :no_content }
       else
@@ -136,6 +136,21 @@ class AccountingPeriodsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def accounting_period_params
+    params.require(:accounting_period).permit(
+        :date,
+        :checking_account_rename,
+        :other_account_name,
+        :receipts_balance_forward,
+        :checking_balance_forward,
+        :other_account_balance_forward,
+        :total_funds_at_bom
+    )
+  end
+
 
 
 end
