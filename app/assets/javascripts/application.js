@@ -21,13 +21,9 @@
 
 
 
-$(function() {
-  $('.best_in_place').best_in_place();  
-
-  
-
-
-});
+//$(function() {
+//  $('.best_in_place').best_in_place();
+//});
 
 
 
