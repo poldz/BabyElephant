@@ -16,7 +16,6 @@
 //= require colorbox-rails
 //= require_tree .
 //= require flexigrid
-
 //= require best_in_place
 //= require best_in_place.jquery-ui
 
