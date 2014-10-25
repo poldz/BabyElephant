@@ -48,7 +48,7 @@ class RemittancesController < ApplicationController
   # POST /remittances
   # POST /remittances.json
   def create
-    @remittance = @accounting_period.remittances.build(params[:remittance])
+    @remittance = @accounting_period.remittances.build(remittance_params)
 
     respond_to do |format|
       if @remittance.save
@@ -71,7 +71,7 @@ class RemittancesController < ApplicationController
     @remittance = @accounting_period.remittances.find(params[:id])
 
     respond_to do |format|
-      if @remittance.update_attributes(params[:remittance])
+      if @remittance.update_attributes(remittance_params)
         arr_path = [@account, @accounting_period, @remittance]
         format.html { redirect_to arr_path, notice: 'Remittance was successfully updated.' }
         format.json { render json: @remittance, status: :ok }
@@ -96,4 +96,23 @@ class RemittancesController < ApplicationController
       format.js { @remittances = @accounting_period.remittances; render 'update_list' }
     end
   end
+
+
+
+  private
+
+  def remittance_params
+
+    params.require(:remittance).permit(
+        :bank_withdrawal_id,
+        :date,
+        :source_of_fund,
+        :remittance_type,
+        :description,
+        :amount,
+        :notes
+    )
+  end
+
+
 end

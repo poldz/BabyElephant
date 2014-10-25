@@ -49,7 +49,7 @@ class ExpensesController < ApplicationController
   # POST /expenses
   # POST /expenses.json
   def create
-    @expense = @accounting_period.expenses.build(bank_expense_params)
+    @expense = @accounting_period.expenses.build(expense_params)
 
     respond_to do |format|
       if @expense.save
@@ -72,7 +72,7 @@ class ExpensesController < ApplicationController
     @expense = @accounting_period.expenses.find(params[:id])
 
     respond_to do |format|
-      if @expense.update_attributes(bank_expense_params)
+      if @expense.update_attributes(expense_params)
         
         arr_path = [@account, @accounting_period, @expense]
         format.html { redirect_to arr_path, notice: 'Expense was successfully updated.' }
@@ -98,11 +98,13 @@ class ExpensesController < ApplicationController
       format.js { @expenses = @accounting_period.expenses; render 'update_list' }
     end
   end
+
+
   private
 
-  def bank_expense_params
+  def expense_params
 
-    params.require(:bank_withdrawal).permit(
+    params.require(:expense).permit(
         :bank_withdrawal_id,
         :date,
         :source_of_fund,
@@ -111,4 +113,5 @@ class ExpensesController < ApplicationController
         :notes
     )
   end
+
 end

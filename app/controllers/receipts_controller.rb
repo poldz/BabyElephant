@@ -48,7 +48,7 @@ class ReceiptsController < ApplicationController
   # POST /receipts
   # POST /receipts.json
   def create
-    @receipt = @accounting_period.receipts.build(params[:receipt])
+    @receipt = @accounting_period.receipts.build(receipt_params)
 
     respond_to do |format|
       if @receipt.save
@@ -69,7 +69,7 @@ class ReceiptsController < ApplicationController
     @receipt = @accounting_period.receipts.find(params[:id])
 
     respond_to do |format|
-      if @receipt.update_attributes(params[:receipt])
+      if @receipt.update_attributes(receipt_params)
         format.html { redirect_to [@receipt.accounting_period.account, @receipt.accounting_period, @receipt], notice: 'Receipt was successfully updated.' }
         format.json { render json: @receipt, status: :ok }
         format.js { @receipts = @accounting_period.receipts; render 'update_list' }
@@ -93,4 +93,27 @@ class ReceiptsController < ApplicationController
       format.js { @receipts = @accounting_period.receipts; render 'update_list' }
     end
   end
+
+  private
+
+  def receipt_params
+
+
+    params.require(:receipt).permit(
+        :date,
+        :worldwide_work,
+        :kingdom_hall_construction_worldwide,
+        :local_congregation_expenses,
+        :other_1,
+        :other_1_amount,
+        :other_1_for,
+        :other_2,
+        :other_2_amount,
+        :other_2_for,
+        :total,
+        :account_servant_name,
+        :verified_by
+    )
+  end
+
 end
