@@ -13,7 +13,19 @@ class ReceiptsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @receipts }
+      # format.json { render json: @receipts }
+
+      format.json { render json:  {
+          # return a JSON collection associated to "rows" ,
+          # where each item contains the id
+          # and a cell hash containing an array of the attributes of the object (which will fill the cells of the row).
+          :rows=>@receipts.collect{ |r|
+            {:id=>r.id,
+             :cell=>[r.date, r.worldwide_work]}},
+          :page=>1,
+          :total=>@receipts.count
+      }.to_json }
+
     end
   end
 

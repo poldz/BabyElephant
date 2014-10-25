@@ -27,40 +27,23 @@
 
 <script type="text/javascript">
     $(".flexme3").flexigrid({
-        url : 'post-xml.php',
-        dataType : 'xml',
+        url : '24/receipts.json',
+        method : 'GET',
+        dataType : 'json',
         colModel : [ {
-            display : 'ISO',
-            name : 'iso',
+            display : 'Date',
+            name : 'date',
             width : 40,
             sortable : true,
             align : 'center'
-        }, {
-            display : 'Name',
-            name : 'name',
-            width : 180,
-            sortable : true,
-            align : 'left'
-        }, {
-            display : 'Printable Name',
-            name : 'printable_name',
-            width : 120,
-            sortable : true,
-            align : 'left'
-        }, {
-            display : 'ISO3',
-            name : 'iso3',
-            width : 130,
-            sortable : true,
-            align : 'left',
-            hide : true
-        }, {
-            display : 'Number Code',
-            name : 'numcode',
-            width : 80,
-            sortable : true,
-            align : 'right'
-        } ],
+        },
+            {
+                display: 'Worldwide Work',
+                name: 'worldwide_work',
+                width: 180,
+                sortable: true,
+                align: 'left'
+            } ],
         buttons : [ {
             name : 'Add',
             bclass : 'add',
