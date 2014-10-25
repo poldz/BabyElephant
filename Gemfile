@@ -48,8 +48,6 @@ gem 'simple_form', github: 'plataformatec/simple_form'
 
 gem 'web-app-theme'
 
-#gem 'best_in_place', '2.0.1'
-
 gem 'ui_datepicker-rails3'
 
 gem "best_in_place"
