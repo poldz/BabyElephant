@@ -12,9 +12,90 @@
 </div>
 
 
+
+<table class="flexme3" style="display: none"></table>
+
+
 <br />
 
 <%= link_to 'New Receipt', new_account_accounting_period_receipt_path(@account, @accounting_period), :data => { :colorbox => true } %>
 
 </div>
 </div>
+
+
+
+<script type="text/javascript">
+    $(".flexme3").flexigrid({
+        url : 'post-xml.php',
+        dataType : 'xml',
+        colModel : [ {
+            display : 'ISO',
+            name : 'iso',
+            width : 40,
+            sortable : true,
+            align : 'center'
+        }, {
+            display : 'Name',
+            name : 'name',
+            width : 180,
+            sortable : true,
+            align : 'left'
+        }, {
+            display : 'Printable Name',
+            name : 'printable_name',
+            width : 120,
+            sortable : true,
+            align : 'left'
+        }, {
+            display : 'ISO3',
+            name : 'iso3',
+            width : 130,
+            sortable : true,
+            align : 'left',
+            hide : true
+        }, {
+            display : 'Number Code',
+            name : 'numcode',
+            width : 80,
+            sortable : true,
+            align : 'right'
+        } ],
+        buttons : [ {
+            name : 'Add',
+            bclass : 'add',
+            onpress : test
+        }, {
+            name : 'Delete',
+            bclass : 'delete',
+            onpress : test
+        }, {
+            separator : true
+        } ],
+        searchitems : [ {
+            display : 'ISO',
+            name : 'iso'
+        }, {
+            display : 'Name',
+            name : 'name',
+            isdefault : true
+        } ],
+        sortname : "iso",
+        sortorder : "asc",
+        usepager : true,
+        title : 'Countries',
+        useRp : true,
+        rp : 15,
+        showTableToggleBtn : true,
+        width : 700,
+        height : 200
+    });
+
+    function test(com, grid) {
+        if (com == 'Delete') {
+            confirm('Delete ' + $('.trSelected', grid).length + ' items?')
+        } else if (com == 'Add') {
+            alert('Add New Item');
+        }
+    }
+</script>
