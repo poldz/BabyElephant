@@ -15,6 +15,7 @@ class ReceiptsController < ApplicationController
       format.html # index.html.erb
       # format.json { render json: @receipts }
 
+
       format.json { render json:  {
           # return a JSON collection associated to "rows" ,
           # where each item contains the id
